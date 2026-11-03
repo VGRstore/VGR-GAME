@@ -3,7 +3,7 @@
 <سر>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>فروشگاه VGR | خرید و فروش اکانت</title>
+<title>VGR STORE | خرید و فروش اکانت</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <سبک>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -109,7 +109,7 @@ textarea{حداقل-ارتفاع:۹۰px;تغییر اندازه:عمودی;ار�
     </اصلی>
   </div><!-- /صفحه اصلی -->
   <div id="supportScreen">
-    <button class="btn back-btn" id="backSupport" type="button">↩️ بازگشت به گزینه اصلی</button>
+    <button class="btn back-btn" id="backSupport" type="button">↩️ بازگشت به گزینه‌های اصلی</button>
     <section class="card">
       <div class="buy-title">🆘 پشتیبانی VGR STORE</div>
       <p class="support-hint">مشکلت رو کامل بنویس؛ بعد از زدن، تلگرام با پیام باز می‌شه. برای ارسال نهایی داخل تلگرام روی Send بزنی.</p>
@@ -190,7 +190,7 @@ var homeScreen=document.getElementById("homeScreen"), buyScreen=document.getElem
 }
 /* مدیریت صفحه‌ها با انیمیشن ورود و خروج */
 متغیر currentView = "صفحه خوشامدگویی";
-var viewIds = ["welcomeScreen"، "homeScreen"، "supportScreen"، "pingScreen"، "buyScreen"، "cpScreen"، "detailsScreen"];
+var viewIds = ["صفحه خوش آمدید"، "صفحه اصلی"، "صفحه پشتیبانی"، "صفحه پینگ"، "صفحه خرید"، "صفحه cp"، "صفحه جزئیات"];
 تابع transitionTo(nextId، afterShow){
   اگر (!document.getElementById(nextId) || currentView === nextId) را برگردانید؛
   متغیر oldView = document.getElementById(currentView);
@@ -445,7 +445,6 @@ body:after{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;ba
  // نمایش جزئیات و دریافت قبل از کسر سکه
  const originalBuy=document.getElementById('gameBuy').onclick;
  document.getElementById('gameBuy').onclick=function(){
-   if(game.coins<1000){alert('برای خرید به 1000 سکه نیاز داری');return;}
    const ok=confirm('اسم محصول: اکانت شانسی کالاف دیوتی موبایل\نامن یا غیرممکن بودن: شانسی\nقیمت: 1,000 سکه\n\nخرید محصول و کسر 1,000 سکه انجام می شود؟');
    اگر (ok) خرید اصلی () انجام شود.
  };
@@ -454,4 +453,4 @@ body:after{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;ba
 
 </body>
 
-   </html>
+</html>
