@@ -1,35 +1,35 @@
-<!DOCTYPE html>
+<!نوع سند html>
 <html lang="fa" dir="rtl">
-<head>
+<سر>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>VGR STORE | خرید و فروش اکانت</title>
+<title>فروشگاه VGR | خرید و فروش اکانت</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
+<سبک>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--bg:#090707;--card:rgba(22,10,12,.94);--text:#fff4f5;--muted:#b9a2a5;--primary:#ef233c;--primary2:#ff334f;--border:rgba(239,35,60,.42)}
 html,body{min-height:100%;background:var(--bg)}
 body{min-height:100vh;color:var(--text);font-family:Tahoma,Arial,sans-serif;overflow-x:hidden;background:radial-gradient(circle at 18% 8%,rgba(239,35,60,.14),transparent 26%),radial-gradient(circle at 85% 28%,rgba(255,23,68,.08),transparent 22%),var(--bg)}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background:linear-gradient(rgba(255,255,255,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008) 1px,transparent 1px);background-size:36px 36px}
 .container{width:min(94%,620px);margin:0 auto;padding:20px 0 45px;position:relative;z-index:1}
-header{text-align:center;padding:25px 15px 20px}
+هدر{text-align:center;padding:25px 15px 20px}
 .logo{width:78px;height:78px;margin:0 auto 15px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(145deg,#261015,#10090b);border:1px solid var(--border);box-shadow:0 0 12px rgba(239,35,60,.3)}
-h1{font-size:25px;margin-bottom:10px;text-shadow:0 0 9px rgba(255,51,79,.55)}
-header p,.note{color:var(--muted);line-height:1.9;font-size:14px}
+h1{اندازه-فونت: ۲۵ پیکسل؛حاشیه-پایین: ۱۰ پیکسل؛سایه-متن: ۰ ۰ ۹ پیکسل rgba(۲۵۵،۵۱،۷۹،.۵۵)}
+هدر p، .note{color:var(--muted);line-height:1.9;font-size:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:18px;box-shadow:0 0 10px rgba(239,35,60,.09)}
-.buttons,.ads-list{display:grid;gap:13px}
+دکمه‌ها، لیست تبلیغات {نمایش: شبکه؛ فاصله: ۱۳ پیکسل}
 .btn{width:100%;min-height:50px;border:1px solid rgba(255,51,79,.52);border-radius:16px;background:linear-gradient(135deg,rgba(239,35,60,.19),rgba(255,51,79,.055));color:white;font-size:14px;font-weight:bold;cursor:pointer;padding:12px;transition:transform .12s,border-color .12s}
-.btn:active,.ad-card:active{transform:scale(.985)}
+‎.btn:active,.ad-card:active{تبدیل:مقیاس(.985)}‎
 .btn.cyan{border-color:rgba(255,92,112,.5);background:linear-gradient(135deg,rgba(255,92,112,.14),rgba(255,92,112,.04))}
 .note{text-align:center;font-size:12px;margin-top:15px}
 .footer{text-align:center;color:#705e62;font-size:11px;margin-top:25px}
-#mainScreen,#buyScreen,#cpScreen,#detailsScreen,#supportScreen,#pingScreen{display:none}
-/* انتقال نرم بین صفحه‌ها */
+#صفحه_اصلی،#صفحه_خرید،#صفحه_سی_پی،#صفحه_جزئیات،#صفحه_پشتیبانی،#صفحه_پینگ{نمایش:هیچکدام}
+/* انتقال نرم افزار بین صفحه ها */
 .view-enter{animation:viewEnter .28s cubic-bezier(.2,.75,.25,1) both}
 .view-exit{animation:viewExit .16s ease both;pointer-events:none}
-@keyframes viewEnter{from{opacity:0;transform:translateY(13px) scale(.992);filter:blur(2px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
-@keyframes viewExit{from{opacity:1;transform:translateY(0);filter:blur(0)}to{opacity:0;transform:translateY(-7px);filter:blur(1px)}}
-@media(prefers-reduced-motion:reduce){.view-enter,.view-exit{animation-duration:.01ms!important}}
+‎@keyframes viewEnter{from{opacity:0;transform:translateY(13px) scale(.992);filter:blur(2px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}‎
+‎@keyframes viewExit{from{opacity:1;transform:translateY(0);filter:blur(0)}to{opacity:0;transform:translateY(-7px);filter:blur(1px)}}‎
+@media(preferred-reduced-motion:reduce){.view-enter,.view-exit{animation-duration:.01ms!important}}
 .buy-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
 .buy-title{font-size:20px;text-shadow:0 0 9px rgba(255,51,79,.5)}
 .refresh-btn{border:1px solid rgba(255,92,112,.4);background:rgba(255,92,112,.07);color:white;border-radius:12px;padding:10px 12px;cursor:pointer;font-size:12px}
@@ -37,14 +37,14 @@ header p,.note{color:var(--muted);line-height:1.9;font-size:14px}
 .ad-image{width:100%;height:220px;object-fit:cover;display:block;background:#161012}
 .ad-content{padding:15px}
 .ad-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.ad-name{font-size:16px;font-weight:bold}
+.ad-name{اندازه-فونت: ۱۶px;وزن-فونت: پررنگ}
 .ad-code{font-size:10px;color:var(--muted);background:rgba(239,35,60,.08);padding:5px 8px;border-radius:8px}
-.price,.details-price{color:#ff91a0;font-size:17px;font-weight:bold;margin-bottom:12px}
-.mini-info,.details-grid,.cp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+‎.price,.details-price{color:#ff91a0;font-size:17px;font-weight:bold;margin-bottom:12px}‎‏
+‎.mini-info,.details-grid,.cp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}‎‏
 .info-box,.detail-item{padding:10px;border-radius:10px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.045);font-size:11px;color:#eadde0;line-height:1.7;overflow-wrap:anywhere}
-.info-box span,.detail-item b{color:var(--muted)}
+‎.info-box span,.detail-item b{color:var(--muted)}‎‏ ...
 .empty,.loading{ text-align:center;padding:30px 15px;color:var(--muted);line-height:2}
-.error-box{padding:15px;border-radius:14px;border:1px solid rgba(255,49,84,.3);background:rgba(255,49,84,.05);color:#ffabb8;text-align:center;line-height:1.9;font-size:13px}
+.error-box{padding:15px;border-radius:14px;border:1px solid rgba(255,49,84,.3);background:rgba(255,49,84,.05);color:#ffabb8;text-align:center;line-height:1.9;font-size:13px} کد: .error-box{padding:15px;border-radius:14px;border:1px solid rgba(255,49,84,.3);background:rgba(255,49,84,.05);color:#ffabb8;text-align:center;line-height:1.9;font-size:13px}
 .cp-item{padding:14px;border-radius:16px;border:1px solid rgba(239,35,60,.3);background:rgba(239,35,60,.05);text-align:center}
 .cp-name{text-align:center;font-size:18px;font-weight:bold;margin-bottom:10px}
 .details-image{width:100%;max-height:330px;object-fit:cover;border-radius:17px;margin-bottom:15px;border:1px solid rgba(239,35,60,.32)}
@@ -60,64 +60,64 @@ header p,.note{color:var(--muted);line-height:1.9;font-size:14px}
 .welcome-card{text-align:center;padding:25px 20px}
 .welcome-card p{color:var(--muted);line-height:2;margin-bottom:20px;font-size:14px}
 .support-hint{color:var(--muted);font-size:12px;line-height:1.9;margin-top:9px}
-#supportMessage{min-height:180px}
+#supportMessage{حداقل-ارتفاع: ۱۸۰ پیکسل}
 dialog{width:min(94%,600px);max-height:92vh;margin:auto;overflow-y:auto;border:1px solid rgba(255,51,79,.5);border-radius:24px;background:#0d080a;color:var(--text);padding:0}
-dialog::backdrop{background:rgba(0,0,0,.75)}
+دیالوگ::backdrop{background:rgba(0,0,0,.75)}
 .dialog-inner{padding:22px}
 .dialog-title{text-align:center;margin-bottom:20px}
 .dialog-title h2{font-size:21px;margin-bottom:7px}
 .dialog-title p{color:var(--muted);font-size:12px}
-label{display:block;color:#e8dce0;font-size:13px;margin:15px 3px 7px}
-input,textarea{width:100%;border:1px solid rgba(239,35,60,.3);border-radius:14px;padding:13px;background:rgba(7,5,6,.8);color:white;font-size:14px;outline:none}
-input:focus,textarea:focus{border-color:var(--primary2)}
-textarea{min-height:90px;resize:vertical;line-height:1.8}
+برچسب{نمایش:بلوک؛رنگ:#e8dce0؛اندازه-فونت:۱۳px؛حاشیه:۱۵px،۳px،۷px}
+ورودی، textarea{width:100%;border:1px solid rgba(239,35,60,.3);border-radius:14px;padding:13px;background:rgba(7,5,6,.8);color:white;font-size:14px;outline:none}
+ورودی: فوکوس، ناحیه متن: فوکوس {رنگ حاشیه: متغیر(--primary2)}
+textarea{حداقل-ارتفاع:۹۰px;تغییر اندازه:عمودی;ارتفاع خط:۱.۸}
 .section-title{margin-top:22px;margin-bottom:9px;font-size:14px;color:#f0e6e8}
 .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .choice{padding:12px 7px;border-radius:13px;border:1px solid rgba(239,35,60,.28);background:rgba(239,35,60,.045);color:#e5dce0;cursor:pointer;font-size:12px}
-.choice.selected{border-color:var(--primary2);background:rgba(255,51,79,.15);color:white}
+.choice.selected{رنگ حاشیه:متغیر(--primary2);رنگ پس‌زمینه:rgba(255,51,79,.15);رنگ:سفید}
 .upload{margin-top:15px}.upload input{display:none}
 .upload-label{min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:15px;border:1px dashed rgba(255,51,79,.55);background:rgba(239,35,60,.045);cursor:pointer;color:#e5dce0}
 .thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin-top:10px}
 .thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
 .warn{margin-top:14px;padding:12px;border-radius:13px;background:rgba(255,191,36,.035);border:1px solid rgba(255,191,36,.18);color:#d9d4c3;font-size:12px;line-height:1.9}
-.err{min-height:20px;color:#ff718c;font-size:12px;line-height:1.7;margin:10px 2px}.success{color:#ff9eaa}
+.err{حداقل-ارتفاع:20px;رنگ:#ff718c;اندازه-فونت:12px;ارتفاع-خط:1.7;حاشیه:10px 2px}.success{رنگ:#ff9eaa}
 .close{margin-top:10px;background:rgba(255,255,255,.025);border-color:rgba(255,255,255,.1)}
 @media(max-width:380px){h1{font-size:22px}.dialog-inner{padding:17px}.choices,.cp-grid,.details-grid{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<بدنه>
 <div class="container">
   <div id="welcomeScreen">
     <header><div class="logo">🎮</div><h1 class="welcome-title">به VGR STORE خوش اومدی! ❤️</h1><p>رفیق، برای خرید و فروش اکانت کالاف دیوتی موبایل اینجاییم 😎</p></header>
-    <section class="card welcome-card">
-      <p>از اینجا می‌تونی آگهی‌های اکانت رو ببینی، برای خرید با فروشنده تماس بگیری یا از پشتیبانی کمک بگیری.</p>
+    <section class="کارت خوشامدگویی">
+      <p>از اینجا می‌تونی آگهی‌های اکرو ببینی، برای خرید با فروشنده تماس بگیر یا از پشتیبانی کمک بگیری.</p>
       <button class="btn" id="goMain" type="button">🚀 ورود به گزینه‌های اصلی</button>
-    </section>
+    </بخش>
   </div>
-  <div id="mainScreen">
-  <div id="homeScreen">
-    <header><div class="logo">🎮</div><h1>خرید و فروش اکانت کالاف</h1><p>آگهی اکانتت رو ثبت کن یا برای خرید اکانت و CP اقدام کن.<br>نسخه پشتیبان VGR STORE</p></header>
-    <main class="card">
+  <div id="صفحه اصلی">
+  <div id="صفحه اصلی">
+    <header><div class="logo">🎮</div><h1>خرید و فروش اکانت کالاف</h1><p>آگهی اکانت رو ثبت کن یا برای خرید اکانت و CP اقدام کن.<br>نسخه پشتیبان VGR STORE</p></header>
+    <کلاس اصلی="کارت">
       <div class="buttons">
         <button class="btn" id="open" type="button">📋 ثبت آگهی</button>
         <button class="btn cyan" id="buy" type="button">🛒 خرید اکانت</button>
         <button class="btn" id="cp" type="button">💳 خرید CP</button>
-        <button class="btn" id="pingApp" type="button">📡 اپ کاهش پینگ</button>
+        <button class="btn" id="pingApp" type="button">📡 کاهش پینگ</button>
         <button class="btn cyan" id="support" type="button">🆘 پشتیبانی</button>
       </div>
       <p class="note">⚠️ این مینی‌اپ زمانی استفاده می‌شود که ربات در دسترس نباشد.<br>بعد از ثبت آگهی، اطلاعات برای ادمین ارسال می‌شود.</p>
-    </main>
-  </div><!-- /mainScreen -->
+    </اصلی>
+  </div><!-- /صفحه اصلی -->
   <div id="supportScreen">
-    <button class="btn back-btn" id="backSupport" type="button">↩️ بازگشت به گزینه‌های اصلی</button>
+    <button class="btn back-btn" id="backSupport" type="button">↩️ بازگشت به گزینه اصلی</button>
     <section class="card">
       <div class="buy-title">🆘 پشتیبانی VGR STORE</div>
-      <p class="support-hint">مشکلت رو کامل بنویس؛ بعد از زدن دکمه، تلگرام با پیام آماده باز می‌شه. برای ارسال نهایی باید داخل تلگرام روی Send بزنی.</p>
+      <p class="support-hint">مشکلت رو کامل بنویس؛ بعد از زدن، تلگرام با پیام باز می‌شه. برای ارسال نهایی داخل تلگرام روی Send بزنی.</p>
       <label for="supportMessage">📝 توضیح مشکل</label>
       <textarea id="supportMessage" maxlength="2000" placeholder="مشکلت رو اینجا بنویس..."></textarea>
       <div class="err" id="supportErr" role="alert"></div>
       <button class="btn" id="sendSupport" type="button">📨 ارسال به ادمین در تلگرام</button>
-    </section>
+    </بخش>
   </div>
   <div id="pingScreen">
     <button class="btn back-btn" id="backPing" type="button">↩️ بازگشت به گزینه‌های اصلی</button>
@@ -129,7 +129,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
         <a class="btn cyan" id="downloadPingApk" href="./rdns.apk" download="rdns.apk" style="display:block;text-align:center;text-decoration:none">📥 دانلود فایل APK</a>
         <p class="note" style="margin-top:12px">اگر دانلود شروع نشد، لینک را دوباره لمس کن یا آن را در مرورگر باز کن.</p>
       </div>
-    </section>
+    </بخش>
   </div>
   <div id="buyScreen">
     <div class="buy-header"><div class="buy-title">🛒 آگهی‌های فروش</div><button class="refresh-btn" id="refreshAds" type="button">🔄 بروزرسانی</button></div>
@@ -138,11 +138,11 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
   </div>
   <div id="cpScreen">
     <div class="buy-header"><div class="buy-title">💳 خرید CP کالاف دیوتی موبایل</div></div>
-    <div class="card"><div class="cp-grid" id="cpGrid"></div><div class="cp-note">برای خرید CP بیشتر به ادمین پیام دهید<button class="btn cyan" id="largeCp" type="button" style="margin-top:11px">💬 ارسال پیام به ادمین</button></div></div>
+    <div class="card"><div class="cp-grid" id="cpGrid"></div><div class="cp-note">برای خرید CP بیشتر به ادمین پیام دهید<button class="btn cyan" id="largeCp" type="button" style="margin-top:11px" type="button" style="margin-top:11px">بهv/div><div class="cp-note">
     <button class="btn close" id="backHomeCp" type="button">↩️ بازگشت</button>
   </div>
   <div id="detailsScreen"><button class="btn back-btn" id="backAds" type="button">↩️ بازگشت به آگهی‌ها</button><div class="card"><div id="detailsContent"></div></div></div>
-  <div class="footer">VGR STORE • Call of Duty Mobile</div>
+  <div class="footer">فروشگاه VGR • کال آف دیوتی موبایل</div>
 </div>
 
 <dialog id="dlg"><div class="dialog-inner">
@@ -153,68 +153,68 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
     <label for="level">⭐ لول اکانت</label><input id="level" inputmode="numeric" placeholder="مثلاً 350">
     <div class="section-title">🏆 رنک اکانت</div>
     <div class="choices" id="rankChoices">
-      <button type="button" class="choice" data-value="Rookie">Rookie</button><button type="button" class="choice" data-value="Veteran">Veteran</button><button type="button" class="choice" data-value="Elite">Elite</button><button type="button" class="choice" data-value="Pro">Pro</button><button type="button" class="choice" data-value="Master">Master</button><button type="button" class="choice" data-value="Grandmaster">Grandmaster</button><button type="button" class="choice" data-value="Legendary">Legendary</button>
+      <button type="button" class="choice" data-value="تازه‌کار">تازه‌کار</button><button type="button" class="choice" data-value="Veteran">کهنه‌کار</button><button type="button" class="choice" data-value="Elite">نخبه</button><button type="button" class="choice" data-value="حرفه‌ای">حرفه‌ای</button><button type="button" class="choice" data-value="Master">استاد</button><button type="button" class="choice" data-value="Grandmaster">استادبزرگ</button><button type="button" class="choice" data-value="Legendary">افسانه‌ای</button>
     </div><input id="rank" type="hidden">
     <label for="leg">🔥 تعداد گان لجند</label><input id="leg" inputmode="numeric" placeholder="مثلاً 8">
     <label for="myth">🔮 تعداد گان میتیک</label><input id="myth" inputmode="numeric" placeholder="مثلاً 3">
     <label for="price">💰 قیمت اکانت (تومان)</label><input id="price" inputmode="numeric" placeholder="مثلاً 15000000">
     <div class="section-title">🔐 نوع سیو اکانت</div>
-    <div class="choices" id="saveChoices"><button type="button" class="choice" data-value="Activision">Activision</button><button type="button" class="choice" data-value="Google">Google</button><button type="button" class="choice" data-value="Facebook">Facebook</button></div><input id="saveType" type="hidden">
+    <div class="choices" id="saveChoices"><button type="button" class="choice" data-value="Activision">Activision</button><button type="button" class="choice" data-value="Google">گوگل</button><button type="button" class="choice" data-value="Facebook">فیسبوک</button></div><input id="saveType" type="hidden">
     <label for="seller">👤 آیدی فروشنده (تلگرام)</label><input id="seller" placeholder="@username">
     <label for="description">📝 توضیحات اضافه</label><textarea id="description" maxlength="700" placeholder="توضیحات مربوط به اکانت..."></textarea>
     <div class="upload"><label for="file" class="upload-label">📸 انتخاب عکس اکانت<br>حداکثر ۵ عکس</label><input id="file" type="file" accept="image/*" multiple></div>
     <div class="thumbs" id="thumbs"></div>
-    <div class="warn">📸 عکس اکانت را همراه آگهی در تلگرام ارسال کنید.<br>⚠️ در صورت ناقص بودن اطلاعات، آگهی ممکن است تأیید نشود.</div>
+    <div class="warn">📸 عکس اکانت را همراه آگهی در تلگرام ارسال کنید.<br>⚠️ در صورت ناقص بودن اطلاعات، ممکن است اعلام شود.</div>
     <div class="err" id="err" role="alert"></div>
     <button class="btn" type="submit">🚀 ارسال آگهی به ادمین</button><button class="btn close" type="button" id="close">بستن</button>
-  </form>
+  فرم
 </div></dialog>
 
-<script>
-/* تنظیمات: نام کاربری ادمین را بدون @ وارد کنید */
-var ADMIN_USERNAME = "Parsa_xxxxx";
-/* این فایل فقط منبع فعلی آگهی‌ها را می‌خواند؛ اگر ربات دیگر ads.json را به‌روز نکند، آگهی‌های جدید خودکار ظاهر نمی‌شوند. */
-var ADS_URL = "https://hsrztjfzh.github.io/parsa-dsa-727.github.io/ads.json";
-var tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-if (tg) { tg.ready(); tg.expand(); }
-var dlg=document.getElementById("dlg"), err=document.getElementById("err"), files=[];
-var welcomeScreen=document.getElementById("welcomeScreen"), mainScreen=document.getElementById("mainScreen"), supportScreen=document.getElementById("supportScreen"), pingScreen=document.getElementById("pingScreen");
+<اسکریپت>
+/* مکان: نام کاربری ادمین را بدون وارد کنید */
+متغیر ADMIN_USERNAME = "Parsa_xxxxx";
+/* این فایل فقط منبع اصلی آگهی‌ها را می‌خواند؛ اگر ربات دیگر ads.json را به‌روز نکند، آگهی‌های جدید خودکار ظاهر نمی‌شوند. */
+var ADS_URL = "https://hsrztjfzh.github.io/parsa-dsa-727.github.io/ads.json"؛
+var tg = window.Telegram && window.Telegram.WebApp ? window.telegram.WebApp : null;
+اگر (tg) { tg.ready(); tg.expand(); }
+متغیر dlg=document.getElementById("dlg"), err=document.getElementById("err"), files=[];
+متغیر welcomeScreen=document.getElementById("welcomeScreen"), mainScreen=document.getElementById("mainScreen"), supportScreen=document.getElementById("supportScreen"), pingScreen=document.getElementById("pingScreen");
 var homeScreen=document.getElementById("homeScreen"), buyScreen=document.getElementById("buyScreen"), cpScreen=document.getElementById("cpScreen"), detailsScreen=document.getElementById("detailsScreen"), adsList=document.getElementById("adsList"), detailsContent=document.getElementById("detailsContent");
 
-function openTelegramMessage(text, username) {
-  var target=String(username || ADMIN_USERNAME).replace(/^@/,"").trim();
+تابع openTelegramMessage(متن، نام کاربری) {
+  متغیر target=String(username || ADMIN_USERNAME).replace(/^@/,"").trim();
   if(!target){alert("نام کاربری تلگرام در دسترس نیست.");return;}
   var url="https://t.me/"+target+"?text="+encodeURIComponent(text || "");
-  if(tg && tg.openTelegramLink) tg.openTelegramLink(url);
-  else window.open(url,"_blank","noopener");
+  اگر (tg && tg.openTelegramLink) tg.openTelegramLink(url);
+  در غیر این صورت window.open(url,"_blank",,"noopener");
 }
 /* مدیریت صفحه‌ها با انیمیشن ورود و خروج */
-var currentView = "welcomeScreen";
-var viewIds = ["welcomeScreen","homeScreen","supportScreen","pingScreen","buyScreen","cpScreen","detailsScreen"];
-function transitionTo(nextId, afterShow){
-  if(!document.getElementById(nextId) || currentView === nextId) return;
-  var oldView = document.getElementById(currentView);
-  var nextView = document.getElementById(nextId);
-  if(oldView){
+متغیر currentView = "صفحه خوشامدگویی";
+var viewIds = ["welcomeScreen"، "homeScreen"، "supportScreen"، "pingScreen"، "buyScreen"، "cpScreen"، "detailsScreen"];
+تابع transitionTo(nextId، afterShow){
+  اگر (!document.getElementById(nextId) || currentView === nextId) را برگردانید؛
+  متغیر oldView = document.getElementById(currentView);
+  متغیر nextView = document.getElementById(nextId);
+  اگر (oldView) {
     oldView.classList.remove("view-enter");
     oldView.classList.add("view-exit");
   }
-  window.setTimeout(function(){
-    viewIds.forEach(function(id){
+  تابع ()window.setTimeout
+    viewIds.forEach(تابع (شناسه) {
       var el=document.getElementById(id);
-      if(el){el.style.display="none";el.classList.remove("view-enter","view-exit");}
+      اگر(el){el.style.display="none";el.classList.remove("view-enter","view-exit");}
     });
-    if(nextId === "welcomeScreen"){
+    اگر (nextId === "صفحه خوش آمدید"){
       mainScreen.style.display="none";
-      nextView.style.display="block";
-    }else{
+      nextView.style.display="بلوک";
+    }در غیر این صورت{
       mainScreen.style.display="block";
-      nextView.style.display="block";
+      nextView.style.display="بلوک";
     }
     nextView.classList.add("view-enter");
-    currentView=nextId;
-    if(typeof afterShow === "function") afterShow();
-  }, oldView ? 155 : 0);
+    نمای فعلی=شناسه بعدی;
+    اگر (نوع afterShow === "تابع") afterShow();
+  }، oldView ? 155 : 0);
 }
 document.getElementById("goMain").onclick=function(){transitionTo("homeScreen");};
 document.getElementById("support").onclick=function(){transitionTo("supportScreen");};
@@ -222,14 +222,14 @@ document.getElementById("backSupport").onclick=function(){transitionTo("homeScre
 document.getElementById("pingApp").onclick=function(){transitionTo("pingScreen");};
 document.getElementById("backPing").onclick=function(){transitionTo("homeScreen");};
 document.getElementById("sendSupport").onclick=function(){
-  var message=document.getElementById("supportMessage").value.trim();
+  متغیر message=document.getElementById("supportMessage").value.trim();
   var supportErr=document.getElementById("supportErr");
   if(!message){supportErr.textContent="⚠️ لطفاً اول مشکلت رو بنویس.";return;}
   supportErr.textContent="در حال باز کردن تلگرام...";
   openTelegramMessage("🆘 درخواست پشتیبانی VGR STORE\n\n"+message);
 };
-document.getElementById("open").onclick=function(){err.textContent="";dlg.showModal();};
-document.getElementById("close").onclick=function(){dlg.close();};
+document.getElementById("باز کردن").onclick=function(){err.textContent="";dlg.showModal();};
+document.getElementById("بستن").onclick=function(){dlg.close();};
 document.getElementById("buy").onclick=function(){transitionTo("buyScreen",loadAds);};
 document.getElementById("cp").onclick=function(){transitionTo("cpScreen");};
 document.getElementById("backHome").onclick=function(){transitionTo("homeScreen");};
@@ -237,161 +237,221 @@ document.getElementById("backHomeCp").onclick=function(){transitionTo("homeScree
 document.getElementById("backAds").onclick=function(){transitionTo("buyScreen");};
 document.getElementById("refreshAds").onclick=loadAds;
 document.getElementById("largeCp").onclick=function(){openTelegramMessage("درود، برای خرید CP حجم بالا پیام دادم.");};
-[80,160,240,320,400,420,480].forEach(function(n){var box=document.createElement("div");box.className="cp-item";box.innerHTML='<div class="cp-name">'+n+' CP</div><button class="btn" type="button">🛒 خرید</button>';box.querySelector("button").onclick=function(){openTelegramMessage("درود، برای خرید "+n+" CP کالاف دیوتی موبایل پیام دادم.");};document.getElementById("cpGrid").appendChild(box);});
+[80,160,240,320,400,420,480].forEach(function(n){var box=document.createElement("div");box.className="cp-item";box.innerHTML='<div class="cp-name">'+class="n+n+t" type="button">🛒 خرید</button>';box.querySelector("button").onclick=function(){openTelegramMessage("درود، برای خرید "+n+" CP کالاف دیوتی موبایل پیام دادم.");};document.getElementById(").apppGri;
 
-async function loadAds(){
+تابع ناهمگام loadAds(){
   adsList.innerHTML='<div class="loading">⏳ در حال دریافت آگهی‌ها...</div>';
-  try{
-    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timeoutId = controller ? setTimeout(function(){controller.abort();}, 10000) : null;
-    var response;
-    try {
-      response = await fetch(ADS_URL+"?t="+Date.now(), {
-        cache:"no-store",
-        signal: controller ? controller.signal : undefined
+  امتحان کنید{
+    متغیر کنترلر = نوع کنترلر AbortController !== "تعریف نشده" ? new AbortController(): null;
+    var timeoutId = controller ? setTimeout(function(){controller.abort();}, 10000): null; // شناسه برنامه: var timeoutId = controller ? // شناسه برنامه: setTimeout(function(){controller.abort();}, 10000) null;
+    پاسخ متغیر؛
+    امتحان کنید {
+      پاسخ = منتظر دریافت (ADS_URL+"?t="+Date.now(), {
+        حافظه پنهان: "بدون ذخیره",
+        سیگنال: کنترلر ? controller.signal: تعریف نشده
       });
-    } finally {
-      if (timeoutId) clearTimeout(timeoutId);
+    } بالاخره {
+      اگر (timeoutId) پاک شود timeout(timeoutId);
     }
-    if(!response.ok)throw new Error("HTTP "+response.status);
-    var data=await response.json();
+    اگر (!response.ok)throw new خطا ("HTTP "+response.status);
+    متغیر داده = منتظر پاسخ.json();
     if(!data || !Array.isArray(data.ads))throw new Error("ساختار ads.json صحیح نیست.");
-    var now=Math.floor(Date.now()/1000);
+    متغیر now=Math.floor(Date.now()/1000);
     renderAds(data.ads.filter(function(ad){return !ad.expires_at || Number(ad.expires_at)>now;}));
-  }catch(e){
-    console.error("ADS ERROR:",e);
-    adsList.innerHTML='<div class="error-box">❌ دریافت آگهی‌ها ناموفق بود.<br><br>ممکن است اینترنت یا فایل ads.json در دسترس نباشد.<br><br><button class="refresh-btn" id="retryAds" type="button">🔄 تلاش دوباره</button></div>';
+  }گرفتن(e){
+    console.error("خطای تبلیغات:",e);
+    adsList.innerHTML='<div class="error-box">❌ دریافت آگهی‌ها ناموفق بود.<br><br>ممکن است اینترنت یا فایل ads.json در دسترس نباشد.<br><br><button class="refresh-btn" id="retryAds" type="button">🔄 جستجو دوباره</button;
     document.getElementById("retryAds").onclick=loadAds;
   }
 }
-function renderAds(ads){
+تابع renderAds(تبلیغات){
   adsList.innerHTML="";
-  if(!ads.length){adsList.innerHTML='<div class="empty">📭 در حال حاضر آگهی فعالی وجود ندارد.<br>بعداً دوباره سر بزنید. ❤️</div>';return;}
-  ads.forEach(function(ad){
-    var card=document.createElement("div");card.className="ad-card";
-    var image=ad.image_url || "";
-    card.innerHTML='<img class="ad-image" alt="تصویر اکانت"><div class="ad-content"><div class="ad-top"><div class="ad-name"></div><div class="ad-code"></div></div><div class="price"></div><div class="mini-info"></div></div>';
+  if(!ads.length){adsList.innerHTML='<div class="empty">📭 در حال حاضر آگهی فعالی وجود ندارد.<br>بعداً دوباره سر بزنید. ❤️</div>';بازگشت;}
+  ads.forEach(تابع(تبلیغ){
+    var card=document.createElement("div");card.className="کارت تبلیغاتی";
+    متغیر image=ad.image_url || "";
+    card.innerHTML='<img class="ad-image" alt="تصویر حساب"><div class="ad-content"><div class="ad-top"><div class="ad-name"></div><div class="ad-code"></div></div><div class="price"></div><div class="mini-info"></div></div>';
     var img=card.querySelector("img");if(image){img.src=image;img.onerror=function(){img.style.display="none";};}else{img.style.display="none";}
-    card.querySelector(".ad-name").textContent=ad.account_name || "اکانت کالاف";
+    card.querySelector(."ad-name").textContent=ad.account_name || "اکانت کالاف";
     card.querySelector(".ad-code").textContent="کد #"+(ad.ad_code || "-");
     card.querySelector(".price").textContent="💰 "+(ad.price || "توافقی")+" تومان";
-    var info=card.querySelector(".mini-info");
-    [["⭐ لول",ad.level],["🏆 رنک",ad.rank],["🔥 لجند",ad.legendary_count],["🔮 میتیک",ad.mythic_count]].forEach(function(pair){var el=document.createElement("div");el.className="info-box";var span=document.createElement("span");span.textContent=pair[0];el.appendChild(span);el.appendChild(document.createElement("br"));el.appendChild(document.createTextNode(pair[1] == null || pair[1]==="" ? "-" : String(pair[1])));info.appendChild(el);});
+    متغیر info=card.querySelector(".mini-info");
+    [["⭐ لول",ad.level]،[" span=document.createElement("span");span.textContent=pair[0];el.appendChild(span);el.appendChild(document.createElement("br"));el.appendChild(document.createTextNode(pair[1] =[1]==" زوج String(pair[1])));info.appendChild(el);});
     card.onclick=function(){showDetails(ad);};adsList.appendChild(card);
   });
 }
-function detailItem(title,value){var el=document.createElement("div");el.className="detail-item";var b=document.createElement("b");b.textContent=title;el.appendChild(b);el.appendChild(document.createTextNode(value==null||value===""?"-":String(value)));return el;}
-function showDetails(ad){
+تابع detailItem(title,value){var el=document.createElement("div");el.className="detail-item";var b=document.createElement("b");b.textContent=title;el.appendChild(b);el.appendChild(document.createTextNode(value==null||value===""?"-":String(value)));return el;}
+تابع showDetails(ad){
   detailsContent.innerHTML="";transitionTo("detailsScreen");
-  if(ad.image_url){var img=document.createElement("img");img.className="details-image";img.alt="تصویر اکانت";img.src=ad.image_url;img.onerror=function(){img.style.display="none";};detailsContent.appendChild(img);}
+  اگر (ad.image_url){var img=document.createElement("img");img.className="details-image";img.alt="حساب تصویر";img.src=ad.image_url;img.onerror=function(){img.style.display="none";};detailsContent.appendChild(img);}
   var title=document.createElement("div");title.className="details-title";title.textContent=ad.account_name||"اکانت کالاف";detailsContent.appendChild(title);
   var code=document.createElement("div");code.className="details-code";code.textContent="کد آگهی: #"+(ad.ad_code||"-");detailsContent.appendChild(code);
   var price=document.createElement("div");price.className="details-price";price.textContent="💰 "+(ad.price||"توافقی")+" تومان";detailsContent.appendChild(price);
   var grid=document.createElement("div");grid.className="details-grid";
-  [["🆔 UID",ad.uid],["👤 اسم اکانت",ad.account_name],["⭐ لول",ad.level],["🏆 رنک",ad.rank],["🔥 گان لجند",ad.legendary_count],["🔮 گان میتیک",ad.mythic_count],["🔐 نوع سیو",ad.save_type],["💰 قیمت",ad.price ? ad.price+" تومان" : "توافقی"]].forEach(function(x){grid.appendChild(detailItem(x[0],x[1]));});
-  detailsContent.appendChild(grid);
+  [[« سیو",ad.save_type],["💰 قیمت",ad.price ? ad.price+" تومان" : "توافقی"]].forEach(function(x){grid.appendChild(detailItem(x[0],x[1]);});
+  جزئیاتContent.appendChild(شبکه)؛
   var desc=document.createElement("div");desc.className="description";var strong=document.createElement("b");strong.textContent="📝 توضیحات";desc.appendChild(strong);desc.appendChild(document.createElement("br"));desc.appendChild(document.createTextNode(ad.description||"توضیحی ثبت نشده است."));detailsContent.appendChild(desc);
-  var seller=String(ad.seller_username||"").replace(/^@/,"").trim();
-  var sellerBox=document.createElement("div");sellerBox.className="seller-box";sellerBox.textContent="👤 فروشنده: "+(seller?"@"+seller:"نامشخص");detailsContent.appendChild(sellerBox);
+  متغیر seller=String(ad.seller_username||"").replace(/^@/,"").trim();
+  var sellerBox=document.createElement("div");sellerBox.clasName="seller-box";sellerBox.textContent="👤 فروشنده: "+(seller?"@"+seller:"نامش");detailsContent.appendChild(sellerBox);
   var buyBtn=document.createElement("button");buyBtn.type="button";buyBtn.className="btn cyan";buyBtn.style.marginTop="14px";buyBtn.textContent="🛒 درخواست خرید از فروشنده";
   buyBtn.onclick=function(){
-    if(!seller){alert("برای این آگهی نام کاربری تلگرام فروشنده ثبت نشده است.");return;}
-    var message="سلام، برای خرید اکانت کالاف پیام دادم.\nکد آگهی: #"+(ad.ad_code||"-")+"\nنام اکانت: "+(ad.account_name||"اکانت کالاف")+"\nقیمت: "+(ad.price||"توافقی")+" تومان\nلطفاً جزئیات بیشتر را بفرمایید.";
-    openTelegramMessage(message,seller);
+    if(!seller){alert("برای این آگهی نام کاربری کاربر تلگرام ثبت نشده است.");return;}
+    var message="سلام، برای خرید اکانت کالاف پیام دادم.\nکد آگهی: #"+(ad.ad_code||"-")+"\nنام اکانت: "+(ad.account_name||"اکانت کالاف")+"\nقیمت: "+(ad.price||"توافقی")+"\nلطفاً."
+    پیام تلگرام باز (پیام، فروشنده)؛
   };
-  detailsContent.appendChild(buyBtn);
+  جزئیاتContent.appendChild(buyBtn);
 }
-function selectChoice(groupId,hiddenId){
+تابع selectChoice(شناسه گروه، شناسه پنهان) {
   document.querySelectorAll("#"+groupId+" .choice").forEach(function(button){button.onclick=function(){document.querySelectorAll("#"+groupId+" .choice").forEach(function(b){b.classList.remove("selected");});button.classList.add("selected");document.getElementById(hiddenId).value=button.dataset.value;};});
 }
 selectChoice("rankChoices","rank");selectChoice("saveChoices","saveType");
 document.getElementById("file").onchange=function(e){
   files=Array.prototype.slice.call(e.target.files,0,5);
-  var thumbs=document.getElementById("thumbs");thumbs.innerHTML="";
+  متغیر thumbs=document.getElementById("thumbs");thumbs.innerHTML="";
   files.forEach(function(file){var img=document.createElement("img");img.src=URL.createObjectURL(file);img.alt="تصویر اکانت";thumbs.appendChild(img);});
   if(e.target.files.length>5)err.textContent="حداکثر ۵ عکس انتخاب می‌شود.";
 };
 document.getElementById("f").onsubmit=function(e){
   e.preventDefault();err.className="err";err.textContent="";
   var val=function(id){return document.getElementById(id).value.trim();};
-  var uid=val("uid"),name=val("name"),level=val("level"),rank=val("rank"),legendary=val("leg"),mythic=val("myth"),price=val("price"),saveType=val("saveType"),seller=val("seller"),description=val("description");
+  var uid=val("uid"),name=val("name"),level=val("level"),rank=val("rank"),legendary=val("leg"),mythic=val("myth"),price=val("price"),saveType=val("saveType"),seller=val("seller"),description=val("description"); // این کدها شامل موارد زیر هستند:
   if(!uid||!name||!level||!rank||!legendary||!mythic||!price||!saveType||!seller){err.textContent="⚠️ لطفاً تمام اطلاعات را کامل کنید.";return;}
   if(!/^\d+$/.test(uid)){err.textContent="❌ UID باید فقط عدد باشد.";return;}
   if(!/^\d+$/.test(level)){err.textContent="❌ لول اکانت باید عدد باشد.";return;}
-  if(!/^\d+$/.test(legendary)||!/^\d+$/.test(mythic)||!/^\d+$/.test(price)){err.textContent="❌ تعداد گان‌ها و قیمت باید عدد باشند.";return;}
-  if(!files.length){err.textContent="📸 حداقل یک عکس اکانت انتخاب کنید.";return;}
-  var text="📋 آگهی فروش اکانت کالاف\n━━━━━━━━━━━━━━\n\n🆔 UID: "+uid+"\n👤 اسم اکانت: "+name+"\n⭐ لول اکانت: "+level+"\n🏆 رنک: "+rank+"\n🔥 تعداد گان لجند: "+legendary+"\n🔮 تعداد گان میتیک: "+mythic+"\n💰 قیمت: "+price+" تومان\n🔐 نوع سیو: "+saveType+"\n👤 آیدی فروشنده: "+seller+(description?"\n\n📝 توضیحات:\n"+description:"")+"\n\n━━━━━━━━━━━━━━\n📸 تعداد عکس: "+files.length+"\n\n⚠️ لطفاً عکس‌های اکانت را نیز در همین چت ارسال کنید.";
+  if(!/^\d+$/.test(legendary)||!/^\d+$/.test(اسطوره)||!/^\d+$/.test(price)){err.textContent="❌ تعداد گان‌ها و قیمت باید باشند.";return;}
+  if(!files.length){err.textContent="📸 حداقل یک عکس اکانت کنید.";return;}
+  var text="📋 آگهی فروش اکانت کالاف\n━━━━━━━━━━━━━━\n\n🆔 UID: "+uid+"\n "+rank+"\n🔥 تعداد گان لجند: "+legendary+"\n🔮 تعداد گان میتیک: "+mythic+"\n💰 قیمت: "+price+" تومان\n🔐 نوع سیو: "+saveType+"\n👤 فروشنده آیدی: "+seller+\nscript" توضیحات:\n"+توضیحات:"")+"\n\n━━━━━━━━━━━━━━\n📸 تعداد عکس: "+files.length+"\n\n⚠️لطفاً عکس‌های همین چانت را بکنید."
   err.className="err success";err.textContent="✅ آگهی آماده شد؛ در حال باز کردن تلگرام...";
-  setTimeout(function(){openTelegramMessage(text);},300);
+  تابع ()setTimeout{openTelegramMessage(text);},300);
 };
 </script>
 
-<!-- VGR PROFILE + GAME ADDITIONS -->
-<style>
+<!-- پروفایل VGR + اضافات بازی -->
+<سبک>
 .profile-bar{display:flex;justify-content:flex-start;align-items:center;gap:9px;margin:8px 0 14px}
 .profile-trigger{display:flex;align-items:center;gap:8px;background:#160b0d;color:white;border:1px solid var(--border);border-radius:30px;padding:7px 12px;cursor:pointer}
 .avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;background:#301016;display:grid;place-items:center}
-#profileDlg input{margin-top:6px}
+#profileDlg ورودی{margin-top:6px}
 .game-screen{display:none;background:radial-gradient(circle at 50% 35%,#380b12,#090707 65%);border:1px solid #6f1424;border-radius:24px;padding:18px;min-height:70vh}
 .game-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.coin{font-size:20px;font-weight:bold;color:#ff526c}
+.coin{اندازه-فونت: 20px;وزن-فونت: پررنگ;رنگ:#ff526c}
 .progress{height:10px;background:#291016;border-radius:9px;overflow:hidden;margin:18px 0}
 .progress>div{height:100%;width:0;background:linear-gradient(90deg,#a20c27,#ff536b);transition:width .2s}
 .game-orb{width:min(68vw,280px);aspect-ratio:1;border-radius:50%;margin:28px auto;display:grid;place-items:center;text-align:center;color:#fff;font-size:27px;font-weight:bold;border:5px solid #ff3155;background:radial-gradient(circle at 35% 25%,#9b2038,#25070d 65%);box-shadow:0 0 35px #c0193c66,inset 0 0 30px #ff315533;cursor:pointer;user-select:none;position:relative}
 .game-orb{transition:transform .16s ease,box-shadow .16s ease}.game-orb:active{transform:scale(.94)}
 .game-screen.view-enter{animation:viewEnter .28s cubic-bezier(.2,.75,.25,1) both}.game-screen.view-exit{animation:viewExit .16s ease both}
-@media(prefers-reduced-motion:reduce){.game-screen.view-enter,.game-screen.view-exit{animation-duration:.01ms!important}}
+@media(preferred-reduced-motion:reduce){.game-screen.view-enter,.game-screen.view-exit{animation-duration:.01ms!important}}
 .float-one{position:absolute;color:#ffb3c0;font-size:22px;animation:floatup .7s ease-out forwards;pointer-events:none}
-@keyframes floatup{to{transform:translateY(-65px);opacity:0}}
+‎@keyframes floatup{to{transform:translateY(-65px);opacity:0}}‎‏
 .game-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .game-sub{display:none}
 .game-panel{margin-top:14px;padding:15px;border:1px solid #551321;border-radius:16px;background:#14090c}
-@media(prefers-reduced-motion:reduce){.game-orb,.progress>div{transition:none}}
+@media(preferred-reduced-motion:reduce){.game-orb,.progress>div{transition:none}}
 </style>
 <div class="profile-bar" id="profileBar" style="display:none">
 <button class="profile-trigger" id="profileOpen"><span class="avatar" id="avatarIcon">👤</span><span id="profileName">کاربر</span></button>
 </div>
-<dialog id="profileDlg"><div class="dialog-inner"><h2>پروفایل کاربر</h2><label>نام نمایشی</label><input id="profileNameInput" maxlength="35"><label>آواتار (اختیاری)</label><input id="avatarInput" type="file" accept="image/*"><div class="err" id="profileErr"></div><button class="btn" id="profileSave">ذخیره</button><button class="btn close" id="profileDelete">حذف پروفایل</button><button class="btn close" id="profileClose">بستن</button></div></dialog>
-<div id="nameDlg" style="display:none;position:fixed;inset:0;background:#000d;z-index:20;place-items:center;padding:20px"><section class="card" style="width:min(100%,420px)"><h2>به VGR STORE خوش اومدی</h2><p class="note">برای ادامه یک نام انتخاب کن</p><input id="firstName" maxlength="35" placeholder="نام شما"><button class="btn" id="firstNameSave" style="margin-top:12px">تأیید و ورود</button></section></div>
+<div id="globalCoinBadge" aria-live="polite">🪙 <span id="globalCoinBalance">0</span></div>
+<dialog id="profileDlg"><div class="dialog-inner"><h2>پروفایل کاربر</h2><label>نام نمایشی</label><input id="profileNameInput" maxlength="35"><label>آواتار (اختیاری)</label><input id="fileNameInput" id="profileErr"></div><button class="btn" id="profileSave">ذخیره</button><button class="btn close" id="profileDelete">حذف پروفایل</button><button class="btn close" id="profileClose">بستن</v></dia
+<div id="nameDlg" style="display:none;position:fixed;inset:0;background:#000d;z-index:20;place-items:center;padding:20px"><section class="card" style="width:min(100%,420px)"><h2>به VGR ادامه داد:"><h2>به VGR ادامه داد. کن</p><input id="firstName" maxlength="35" placeholder="نام شما"><button class="btn" id="firstNameSave" style="margin-top:12px">تأیید و ورود</button></section></div>
 <div id="gameScreen" class="game-screen">
-<div class="game-top"><div class="coin">🪙 <span id="coinBalance">0</span> <button class="refresh-btn" id="gameRefresh">↻</button></div><b>🎮 VGR GAME 🎮</b></div>
-<div class="progress"><div id="coinProgress"></div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#cbaeb4"><span>موجودی</span><span>هدف 1,000 سکه</span></div>
-<button class="game-orb" id="coinTap">🎮<br>VGR GAME</button>
+<div class="game-top"><div class="coin">🪙 <span id="coinBalance">0</span> <button class="refresh-btn" id="gameRefresh">↻</button></div><b>🎮 بازی VGR 🎮</b></div>
+<div class="progress"><div id="coinProgress"></div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#cbaeb4"><span>موجودی</span><span>هدف</span><span>1,000 سکه
+<button class="game-orb" id="coinTap">🎮<br>بازی VGR</button>
 <div class="game-actions"><button class="btn" id="gameUpgrade">ارتقا 🔥</button><button class="btn cyan" id="gameProducts">محصولات ✅</button></div>
-<div class="game-panel game-sub" id="upgradePanel"><b>سرعت جمع‌آوری: +<span id="tapPower">1</span></b><p class="note">سکه روزانه: <span id="dailyAmount">100</span></p><div id="upgradeOptions"></div></div>
-<div class="game-panel game-sub" id="productPanel"><div style="display:flex;gap:12px;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Call_of_Duty_Mobile_logo.png/240px-Call_of_Duty_Mobile_logo.png" style="width:72px;height:72px;object-fit:contain" alt="Call of Duty Mobile"><div><b>اکانت شانسی کالاف دیوتی موبایل 🎁</b><p class="note">قیمت: 1,000 سکه</p></div></div><button class="btn" id="gameBuy" style="margin-top:12px">خرید محصول</button><div id="purchaseResult"></div></div>
+<div class="game-panel game-sub" id="upgradePanel"><b>سرعت جمع‌آوری: +<span id="tapPower">1</span></b><p class="note">سکه روزانه: <span id="dailyAmount">100</span></p><div id="vgrad">
+<div class="game-panel game-sub" id="productPanel"><div style="display:flex;gap:12px;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Call_of_Duty_Mobile_logo.png/240px-Call_of_Duty_Mobile_logo.png" style="width:72px;height:72px:72px; Mobile"><div><b>اکانت شانسی کالاف دیوتی موبایل 🎁</b><p class="note">قیمت: 1000 سکه</p></div></div><button class="btn" id="gameBuy" style="margin-top:12px">خرید محصول</button><vsevReult</button><vsev>
 <button class="btn close" id="gameBack" style="margin-top:14px">↩️ بازگشت به صفحه اصلی</button></div>
-<script>
-(function(){
-const $=id=>document.getElementById(id);
+<اسکریپت>
+(تابع (){
+تابع const $=id=>document.getElementById(id);
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
-let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:100,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});
-function dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
-function checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
-function saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
-function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('coinProgress').style.width=Math.min(100,game.coins/10)+'%';$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
-const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:150,c:120},{v:250,c:200},{v:500,c:450},{v:1000,c:900}];
+‎let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:300,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});‎‏
+اگر (!game.dailyLevel && game.daily<=100) game.daily=300;
+تابع dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+تابع checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
+تابع saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
+تابع renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');$('coinProgress').style.width=Math.min(100,game.coins/10)+'%';$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (بقیه عبارت‌های زیر امروز یافت می‌شوند: '+Math.max(0,game.daily-game.earnedToday)+')';
+توان‌های ثابت = [{v:2,c:120},{v:5,c:200},{v:10,c:800}],روزانه = [{v:450,c:550},{v:800,c:950}];
 $('upgradeOptions').innerHTML='';
-[[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<x.c){alert('سکه کافی نیست');return}game.coins-=x.c;if(i===0){game.power=x.v;game.powerLevel++}else{game.daily=x.v;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
-function showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').style.backgroundImage='none';$('avatarIcon').style.backgroundSize='cover';$('avatarIcon').style.backgroundPosition='center';$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar){$('avatarIcon').style.backgroundImage='url("'+profile.avatar+'")';$('avatarIcon').textContent='';}}
+[[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<xc){alert('سکه کافی نیست');return}game.coins-=xc;if(i===0){game.power=xv;game.powerLevel++}else{game.daily=xv;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
+تابع showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').style.backgroundImage='none';$('avatarIcon').style.backgroundSize='cover';$('avatarIcon').style.backgroundPosition='center';$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar){$('avatarIcon').style.backgroundImage='url("'+profile.avatar+'")';$('avatarIcon').textContent='';}}
 $('firstNameSave').onclick=()=>{let n=$('firstName').value.trim();if(!n)return;profile={name:n};localStorage.setItem('vgr_profile',JSON.stringify(profile));$('nameDlg').style.display='none';showProfile()};
 $('profileOpen').onclick=()=>{$('profileNameInput').value=profile.name;$('profileDlg').showModal()};
-$('profileSave').onclick=()=>{let n=$('profileNameInput').value.trim();if(!n)return;$('profileErr').textContent='';profile.name=n;let f=$('avatarInput').files[0];if(f){if(!f.type.startsWith('image/')){$('profileErr').textContent='لطفاً فایل تصویری انتخاب کن.';return}let r=new FileReader();r.onload=()=>{let img=new Image();img.onload=()=>{let c=document.createElement('canvas'),max=256,scale=Math.min(1,max/Math.max(img.width,img.height));c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);profile.avatar=c.toDataURL('image/jpeg',0.78);persist()};img.onerror=()=>{$('profileErr').textContent='خواندن تصویر ناموفق بود.'};img.src=r.result};r.onerror=()=>{$('profileErr').textContent='خواندن فایل ناموفق بود.'};r.readAsDataURL(f)}else persist();function persist(){localStorage.setItem('vgr_profile',JSON.stringify(profile));showProfile();$('profileDlg').close()}};
-$('profileDelete').onclick=()=>{localStorage.removeItem('vgr_profile');profile=null;$('profileBar').style.display='none';$('profileDlg').close();$('nameDlg').style.display='grid'};
+$('profileSave').onclick=()=>{بگذارید n=$('profileNameInput').value.trim();if(!n)return;$('profileErr').textContent='';profile.name=n;let f=$('avatarInput').files[0];if(f){if(!f.type.startsWith('image/')){$('profileErr').textContent='لطفاً فایل تصویری انتخاب کن.';return}لذا r=new FileReader();r.ewn>{image/img Image();img.onload=()=>{let c=document.createElement('canvas'),max=256,scale=Math.min(1,max/Math.max(img.width,img.height));c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scal e);c.getContext('2d').drawImage(img,0,0,c.width,c.height);profile.avatar=c.toDataURL('image/jpeg',0.78);persist()};img.onerror=()=>{$('profileCخوانnt'=ext). تصویر ناموفق بود.'};img.src=r.result};r.onerror=()=>{$('profileErr').textContent='خواندن فایل ناموفق بود.'};r.readAsDataURL(f)}else persist();function persist(){localStorage.setItem('vgr_profile',JSON.stringify(profile));showProfile();$('profileDlg').close()}};
+‎$('profileDelete').onclick=()=>{localStorage.removeItem('vgr_profile');profile=null;$('profileBar').style.display='none';$('profileDlg').close();$('nameDlg').style.display='grid'};‎
 $('profileClose').onclick=()=>$('profileDlg').close();
-let oldGo=$('goMain').onclick;$('goMain').onclick=()=>{if(!profile){$('nameDlg').style.display='grid';return}oldGo()};
-let gameBtn=document.createElement('button');gameBtn.className='btn';gameBtn.textContent='🎮 VGR GAME 🎮';$('homeScreen').querySelector('.buttons').appendChild(gameBtn);
+‎let oldGo=$('goMain').onclick;$('goMain').onclick=()=>{if(!profile){$('nameDlg').style.display='grid';return}oldGo()};‎
+‎let gameBtn=document.createElement('button');gameBtn.className='btn';gameBtn.textContent='🎮 بازی VGR 🎮';$('homeScreen').querySelector('.buttons').appendChild(gameBtn);‎
 gameBtn.onclick=()=>{let g=$('gameScreen');$('mainScreen').style.display='block';['homeScreen','buyScreen','cpScreen','detailsScreen','supportScreen','pingScreen'].forEach(id=>$(id).style.display='none');g.classList.remove('view-exit');g.style.display='block';g.classList.add('view-enter');currentView='gameScreen';renderGame()};
-$('gameBack').onclick=()=>{let g=$('gameScreen');g.classList.remove('view-enter');g.classList.add('view-exit');window.setTimeout(()=>{g.style.display='none';g.classList.remove('view-exit');$('mainScreen').style.display='block';transitionTo('homeScreen')},155)};
-$('gameRefresh').onclick=renderGame;
-$('coinTap').onclick=e=>{checkDaily();if(game.earnedToday>=game.daily){alert('سقف سکه امروز پر شده؛ فردا دوباره بیا!');return}let gain=Math.min(game.power,game.daily-game.earnedToday);game.coins+=gain;game.earnedToday+=gain;saveGame();let s=document.createElement('span');s.className='float-one';s.textContent='+'+gain;s.style.left=(e.offsetX||100)+'px';s.style.top=(e.offsetY||100)+'px';$('coinTap').appendChild(s);setTimeout(()=>s.remove(),750)};
+‎$('gameBack').onclick=()=>{let g=$('gameScreen');g.classList.remove('view-enter');g.classList.add('view-exit');window.setTimeout(()=>{g.style.display='none';g.classList.remove('view-exit');$('mainScreen').style.display='block';transitionTo('homeScreen')},155)};‎
+‎$('بازی را تازه کنید').onclick=renderGame;‎
+$('coinTap').onclick=e=>{checkDaily();if(game.earnedToday>=game.daily){alert('سقف سکه امروز پر شده؛ فردا دوباره بیا!');return}بگذارید gain=Math.min(game.power,game.daily-game.earnedToday);game.coins+=gain;game.earnedToday+=gain;saveGame();let s=document.createElement('span');s.className='float-one';s.textContent='+'+gain;s.style.left=(e.offsetX| |100)+'px';s.style.top=(e.offsetY||100)+'px';$('coinTap').appendChild(s);setTimeout(()=>s.remove(),750)};
 $('gameUpgrade').onclick=()=>{$('upgradePanel').style.display=$('upgradePanel').style.display==='block'?'none':'block';$('productPanel').style.display='none'};
-$('gameProducts').onclick=()=>{$('productPanel').style.display=$('productPanel').style.display==='block'?'none':'block';$('upgradePanel').style.display='none'};
-$('gameBuy').onclick=()=>{if(game.coins<1000){alert('برای خرید به ۱۰۰۰ سکه نیاز داری');return}game.coins-=1000;saveGame();$('purchaseResult').innerHTML='<p style="text-align:center;color:#ff7d92;margin-top:12px">✅ پرداخت انجام شد؛ لطفاً از صفحه اسکرین‌شات بگیر و برای ادمین ارسال کن.</p><button class="btn" id="adminMsg">ارسال پیام به ادمین</button>'; $('adminMsg').onclick=()=>openTelegramMessage('سلام، خرید اکانت شانسی با ۱۰۰۰ سکه انجام شد. اسکرین‌شات پرداخت را ارسال می‌کنم.');};
-showProfile();renderGame();
+‎$('gameProducts').onclick=()=>{$('productPanel').style.display=$('productPanel').style.display==='block'?'none':'block';$('upgradePanel').style.display='none'};‎
+$('gameBuy').onclick=()=>{if(game.coins<1000){alert('برای خرید به 1000 سکه نیازداری');return}game.coins-=1000;saveGame();$('purchaseResult').innerHTML='<p style="text-align:center;color:#ff7d92;margin-top:12px">✅ پرداخت انجام شد؛ لطفاً از صفحه اسکرین‌شات بگیر و برای ادمین ارسال کن.</p><button class="btn" id="adminMsg">ارسال پیام به ادمین</button>'; $('adminMsg').onclick=()=>openTelegramMessage('سلام، خرید اکانت شانسی با ۱۰۰۰ سکه انجام شد. اسکرین‌شات پرداخت را ارسال می‌کنم.');};
+نمایش پروفایل(); رندر بازی();
+})();
+</script>
+
+
+<!-- اصلاحات تکمیلی VGR STORE -->
+<سبک>
+/* سبک پسزمینه‌ای متحرک؛ در حالت کاهش حرکت خاموش می‌شود */
+body:after{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;background:radial-gradient(circle at 25% 30%,#ef233c12,transparent 28%),radial-gradient(circle at 75% 70%,#ef233c0d,transparent 30%);animation:bgDrift 22s ease-in-out infinite alternate}
+‎@keyframes bgDrift{from{transform:translate3d(-1%,0,0)}to{transform:translate3d(1%,1%,0)}}‎
+@media(preferred-reduced-motion:reduce){body:after{animation:none}}
+#profileBar{موقعیت:ثابت!مهم;بالا:10px;چپ:10px;z-index:35;حاشیه:0!مهم}
+#globalCoinBadge{position:fixed;top:10px;right:10px;z-index:35;padding:9px 14px;border:1px solid #ef233c;border-radius:999px;background:#16090c;color:#ffd4dc;font-weight:800;box-shadow:0 4px 18px #0008;direction:ltr}
+بدنه{padding-top:48px}
+#profileDlg{z-index:30}
+.cp-product-dialog{width:min(92%,430px);padding:20px;background:#10090b;color:white;border:1pxsolid #ef233c;border-radius:20px} کد: .cp-product-dialog{width:min(92%,430px);padding:20px;background:#10090b;color:white;border:1pxsolid#ef233c;border-radius:20px}
+.cp-product-dialog::backdrop{background:#000b}
+.cp-product-dialog h3{margin-bottom:14px}
+‎.cp-product-dialog p{line-height:2;color:#e8dce0}‎‏ (این یک کد است و نیازی به ترجمه ندارد.)
+</style>
+<dialog id="cpProductDialog" class="cp-product-dialog">
+ <h3 id="cpProductTitle">خرید CP</h3>
+ <p id="cpProductPrice"></p>
+ <p id="cpProductId"></p>
+ <button class="btn" id="cpProductBuy">خرید و پیام به ادمین</button>
+ <button class="btn close" id="cpProductClose">بستن</button>
+</dialog>
+<اسکریپت>
+(تابع (){
+ const dlg=document.getElementById('cpProductDialog');
+ const title=document.getElementById('عنوان محصول')، price=document.getElementById('قیمت محصول')، pid=document.getElementById('شناسه محصول')؛
+ بگذارید انتخاب شده = 0؛
+ // نرخ پایه فعلی برای ارزیابی زنده باید از API/بکاندی با دسترسی به منبع استفاده شود.
+ const tomanPerDollar=271000;
+ document.querySelectorAll('#cpGrid .cp-item').forEach((box)=>{
+   const label=box.querySelector('.cp-name').textContent;
+   مقدار ثابت = parseInt(label,10)||0;
+   const btn=box.querySelector('دکمه');
+   btn.onclick=()=>{
+     انتخاب شده=مقدار؛
+     title.textContent='محصول: '+مقدار+' CP';
+     price.textContent='قیمت: '+Math.round(amount/80*tomanPerDollar).toLocaleString('fa-IR')+' تومان';
+     pid.textContent='شناسه محصول: در حال حاضر تعریف نشده';
+     dlg.showModal();
+   };
+ });
+ document.getElementById('cpProductBuy').onclick=()=>{
+   dlg.close();
+   openTelegramMessage('سلام، برای خرید CP پیام دادم.\nمحصول: '+chosen+' CP\nقیمت تقریبی: '+Math.round(chosen/80*tomanPerDollar).toLocaleString('fa-IR')+' تومان');
+ };
+ document.getElementById('cpProductClose').onclick=()=>dlg.close();
+
+ // نمایش جزئیات و دریافت قبل از کسر سکه
+ const originalBuy=document.getElementById('gameBuy').onclick;
+ document.getElementById('gameBuy').onclick=function(){
+   if(game.coins<1000){alert('برای خرید به 1000 سکه نیاز داری');return;}
+   const ok=confirm('اسم محصول: اکانت شانسی کالاف دیوتی موبایل\نامن یا غیرممکن بودن: شانسی\nقیمت: 1,000 سکه\n\nخرید محصول و کسر 1,000 سکه انجام می شود؟');
+   اگر (ok) خرید اصلی () انجام شود.
+ };
 })();
 </script>
 
 </body>
 
-</html>
+   </html>
