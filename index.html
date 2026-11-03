@@ -338,7 +338,9 @@ document.getElementById("f").onsubmit=function(e){
 .progress{height:10px;background:#291016;border-radius:9px;overflow:hidden;margin:18px 0}
 .progress>div{height:100%;width:0;background:linear-gradient(90deg,#a20c27,#ff536b);transition:width .2s}
 .game-orb{width:min(68vw,280px);aspect-ratio:1;border-radius:50%;margin:28px auto;display:grid;place-items:center;text-align:center;color:#fff;font-size:27px;font-weight:bold;border:5px solid #ff3155;background:radial-gradient(circle at 35% 25%,#9b2038,#25070d 65%);box-shadow:0 0 35px #c0193c66,inset 0 0 30px #ff315533;cursor:pointer;user-select:none;position:relative}
-.game-orb:active{transform:scale(.94)}
+.game-orb{transition:transform .16s ease,box-shadow .16s ease}.game-orb:active{transform:scale(.94)}
+.game-screen.view-enter{animation:viewEnter .28s cubic-bezier(.2,.75,.25,1) both}.game-screen.view-exit{animation:viewExit .16s ease both}
+@media(prefers-reduced-motion:reduce){.game-screen.view-enter,.game-screen.view-exit{animation-duration:.01ms!important}}
 .float-one{position:absolute;color:#ffb3c0;font-size:22px;animation:floatup .7s ease-out forwards;pointer-events:none}
 @keyframes floatup{to{transform:translateY(-65px);opacity:0}}
 .game-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -363,24 +365,26 @@ document.getElementById("f").onsubmit=function(e){
 (function(){
 const $=id=>document.getElementById(id);
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
-let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:100,powerLevel:0,dailyLevel:0});
-function saveGame(){localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
-function renderGame(){$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('coinProgress').style.width=Math.min(100,game.coins/10)+'%';$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily;
+let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:100,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});
+function dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
+function saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
+function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('coinProgress').style.width=Math.min(100,game.coins/10)+'%';$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
 const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:150,c:120},{v:250,c:200},{v:500,c:450},{v:1000,c:900}];
 $('upgradeOptions').innerHTML='';
 [[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<x.c){alert('سکه کافی نیست');return}game.coins-=x.c;if(i===0){game.power=x.v;game.powerLevel++}else{game.daily=x.v;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
-function showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar)$('avatarIcon').style.backgroundImage='url('+profile.avatar+')';}
+function showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').style.backgroundImage='none';$('avatarIcon').style.backgroundSize='cover';$('avatarIcon').style.backgroundPosition='center';$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar){$('avatarIcon').style.backgroundImage='url("'+profile.avatar+'")';$('avatarIcon').textContent='';}}
 $('firstNameSave').onclick=()=>{let n=$('firstName').value.trim();if(!n)return;profile={name:n};localStorage.setItem('vgr_profile',JSON.stringify(profile));$('nameDlg').style.display='none';showProfile()};
 $('profileOpen').onclick=()=>{$('profileNameInput').value=profile.name;$('profileDlg').showModal()};
-$('profileSave').onclick=()=>{let n=$('profileNameInput').value.trim();if(!n)return;$('profileErr').textContent='';profile.name=n;let f=$('avatarInput').files[0];if(f){let r=new FileReader();r.onload=()=>{profile.avatar=r.result;persist()};r.readAsDataURL(f)}else persist();function persist(){localStorage.setItem('vgr_profile',JSON.stringify(profile));showProfile();$('profileDlg').close()}};
+$('profileSave').onclick=()=>{let n=$('profileNameInput').value.trim();if(!n)return;$('profileErr').textContent='';profile.name=n;let f=$('avatarInput').files[0];if(f){if(!f.type.startsWith('image/')){$('profileErr').textContent='لطفاً فایل تصویری انتخاب کن.';return}let r=new FileReader();r.onload=()=>{let img=new Image();img.onload=()=>{let c=document.createElement('canvas'),max=256,scale=Math.min(1,max/Math.max(img.width,img.height));c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);profile.avatar=c.toDataURL('image/jpeg',0.78);persist()};img.onerror=()=>{$('profileErr').textContent='خواندن تصویر ناموفق بود.'};img.src=r.result};r.onerror=()=>{$('profileErr').textContent='خواندن فایل ناموفق بود.'};r.readAsDataURL(f)}else persist();function persist(){localStorage.setItem('vgr_profile',JSON.stringify(profile));showProfile();$('profileDlg').close()}};
 $('profileDelete').onclick=()=>{localStorage.removeItem('vgr_profile');profile=null;$('profileBar').style.display='none';$('profileDlg').close();$('nameDlg').style.display='grid'};
 $('profileClose').onclick=()=>$('profileDlg').close();
 let oldGo=$('goMain').onclick;$('goMain').onclick=()=>{if(!profile){$('nameDlg').style.display='grid';return}oldGo()};
 let gameBtn=document.createElement('button');gameBtn.className='btn';gameBtn.textContent='🎮 VGR GAME 🎮';$('homeScreen').querySelector('.buttons').appendChild(gameBtn);
-gameBtn.onclick=()=>{['homeScreen','buyScreen','cpScreen','detailsScreen','supportScreen','pingScreen'].forEach(id=>$(id).style.display='none');$('gameScreen').style.display='block';renderGame()};
-$('gameBack').onclick=()=>{$('gameScreen').style.display='none';transitionTo('homeScreen')};
+gameBtn.onclick=()=>{let g=$('gameScreen');$('mainScreen').style.display='block';['homeScreen','buyScreen','cpScreen','detailsScreen','supportScreen','pingScreen'].forEach(id=>$(id).style.display='none');g.classList.remove('view-exit');g.style.display='block';g.classList.add('view-enter');currentView='gameScreen';renderGame()};
+$('gameBack').onclick=()=>{let g=$('gameScreen');g.classList.remove('view-enter');g.classList.add('view-exit');window.setTimeout(()=>{g.style.display='none';g.classList.remove('view-exit');$('mainScreen').style.display='block';transitionTo('homeScreen')},155)};
 $('gameRefresh').onclick=renderGame;
-$('coinTap').onclick=e=>{game.coins+=game.power;saveGame();let s=document.createElement('span');s.className='float-one';s.textContent='+'+game.power;s.style.left=(e.offsetX||100)+'px';s.style.top=(e.offsetY||100)+'px';$('coinTap').appendChild(s);setTimeout(()=>s.remove(),750)};
+$('coinTap').onclick=e=>{checkDaily();if(game.earnedToday>=game.daily){alert('سقف سکه امروز پر شده؛ فردا دوباره بیا!');return}let gain=Math.min(game.power,game.daily-game.earnedToday);game.coins+=gain;game.earnedToday+=gain;saveGame();let s=document.createElement('span');s.className='float-one';s.textContent='+'+gain;s.style.left=(e.offsetX||100)+'px';s.style.top=(e.offsetY||100)+'px';$('coinTap').appendChild(s);setTimeout(()=>s.remove(),750)};
 $('gameUpgrade').onclick=()=>{$('upgradePanel').style.display=$('upgradePanel').style.display==='block'?'none':'block';$('productPanel').style.display='none'};
 $('gameProducts').onclick=()=>{$('productPanel').style.display=$('productPanel').style.display==='block'?'none':'block';$('upgradePanel').style.display='none'};
 $('gameBuy').onclick=()=>{if(game.coins<1000){alert('برای خرید به ۱۰۰۰ سکه نیاز داری');return}game.coins-=1000;saveGame();$('purchaseResult').innerHTML='<p style="text-align:center;color:#ff7d92;margin-top:12px">✅ پرداخت انجام شد؛ لطفاً از صفحه اسکرین‌شات بگیر و برای ادمین ارسال کن.</p><button class="btn" id="adminMsg">ارسال پیام به ادمین</button>'; $('adminMsg').onclick=()=>openTelegramMessage('سلام، خرید اکانت شانسی با ۱۰۰۰ سکه انجام شد. اسکرین‌شات پرداخت را ارسال می‌کنم.');};
@@ -390,4 +394,4 @@ showProfile();renderGame();
 
 </body>
 
-  </html>
+</html>
