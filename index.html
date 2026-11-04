@@ -94,30 +94,30 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
       <button class="btn" id="goMain" type="button">🚀 ورود به گزینه‌های اصلی</button>
     </section>
   </div>
-  <div id="mainScreen">
-  <div id="homeScreen">
-    <header><div class="logo">🎮</div><h1>خرید و فروش اکانت کالاف</h1><p>آگهی اکانتت رو ثبت کن یا برای خرید اکانت و CP اقدام کن.<br>نسخه پشتیبان VGR STORE</p></header>
-    <main class="card">
+  <div id="صفحه اصلی">
+  <div id="صفحه اصلی">
+    <header><div class="logo">🎮</div><h1>خرید و فروش اکانت کالاف</h1><p>آگهی اکانت رو ثبت کن یا برای خرید اکانت و CP اقدام کن.<br>نسخه پشتیبان VGR STORE</p></header>
+    <کلاس اصلی="کارت">
       <div class="buttons">
         <button class="btn" id="open" type="button">📋 ثبت آگهی</button>
         <button class="btn cyan" id="buy" type="button">🛒 خرید اکانت</button>
         <button class="btn" id="cp" type="button">💳 خرید CP</button>
-        <button class="btn" id="pingApp" type="button">📡 اپ کاهش پینگ</button>
+        <button class="btn" id="pingApp" type="button">📡 کاهش پینگ</button>
         <button class="btn cyan" id="support" type="button">🆘 پشتیبانی</button>
       </div>
       <p class="note">⚠️ این مینی‌اپ زمانی استفاده می‌شود که ربات در دسترس نباشد.<br>بعد از ثبت آگهی، اطلاعات برای ادمین ارسال می‌شود.</p>
-    </main>
-  </div><!-- /mainScreen -->
+    </اصلی>
+  </div><!-- /صفحه اصلی -->
   <div id="supportScreen">
     <button class="btn back-btn" id="backSupport" type="button">↩️ بازگشت به گزینه‌های اصلی</button>
     <section class="card">
       <div class="buy-title">🆘 پشتیبانی VGR STORE</div>
-      <p class="support-hint">مشکلت رو کامل بنویس؛ بعد از زدن دکمه، تلگرام با پیام آماده باز می‌شه. برای ارسال نهایی باید داخل تلگرام روی Send بزنی.</p>
+      <p class="support-hint">مشکلت رو کامل بنویس؛ بعد از زدن، تلگرام با پیام باز می‌شه. برای ارسال نهایی داخل تلگرام روی Send بزنی.</p>
       <label for="supportMessage">📝 توضیح مشکل</label>
       <textarea id="supportMessage" maxlength="2000" placeholder="مشکلت رو اینجا بنویس..."></textarea>
       <div class="err" id="supportErr" role="alert"></div>
       <button class="btn" id="sendSupport" type="button">📨 ارسال به ادمین در تلگرام</button>
-    </section>
+    </بخش>
   </div>
   <div id="pingScreen">
     <button class="btn back-btn" id="backPing" type="button">↩️ بازگشت به گزینه‌های اصلی</button>
@@ -125,7 +125,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
       <div class="buy-title">📡 دریافت اپ کاهش پینگ</div>
       <p class="support-hint">برای دریافت اپلیکیشن کاهش پینگ VGR STORE، از لینک مستقیم زیر استفاده کن.</p>
       <div class="cp-note" style="text-align:center;margin-top:16px">
-        <div style="font-size:15px;font-weight:bold;margin-bottom:12px">لینک دانلود 👇</div>
+        <div style="font-size:15px;font-weight:bold;margin-bottom:12px">لینک دانلود👇</div>
         <a class="btn cyan" id="downloadPingApk" href="./rdns.apk" download="rdns.apk" style="display:block;text-align:center;text-decoration:none">📥 دانلود فایل APK</a>
         <p class="note" style="margin-top:12px">اگر دانلود شروع نشد، لینک را دوباره لمس کن یا آن را در مرورگر باز کن.</p>
       </div>
@@ -153,18 +153,18 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
     <label for="level">⭐ لول اکانت</label><input id="level" inputmode="numeric" placeholder="مثلاً 350">
     <div class="section-title">🏆 رنک اکانت</div>
     <div class="choices" id="rankChoices">
-      <button type="button" class="choice" data-value="Rookie">Rookie</button><button type="button" class="choice" data-value="Veteran">Veteran</button><button type="button" class="choice" data-value="Elite">Elite</button><button type="button" class="choice" data-value="Pro">Pro</button><button type="button" class="choice" data-value="Master">Master</button><button type="button" class="choice" data-value="Grandmaster">Grandmaster</button><button type="button" class="choice" data-value="Legendary">Legendary</button>
+      <button type="button" class="choice" data-value="تازه‌کار">تازه‌کار</button><button type="button" class="choice" data-value="Veteran">کهنه‌کار</button><button type="button" class="choice" data-value="Elite">نخبه</button><button type="button" class="choice" data-value="حرفه‌ای">حرفه‌ای</button><button type="button" class="choice" data-value="Master">استاد</button><button type="button" class="choice" data-value="Grandmaster">استادبزرگ</button><button type="button" class="choice" data-value="Legendary">افسانه‌ای</button>
     </div><input id="rank" type="hidden">
     <label for="leg">🔥 تعداد گان لجند</label><input id="leg" inputmode="numeric" placeholder="مثلاً 8">
     <label for="myth">🔮 تعداد گان میتیک</label><input id="myth" inputmode="numeric" placeholder="مثلاً 3">
     <label for="price">💰 قیمت اکانت (تومان)</label><input id="price" inputmode="numeric" placeholder="مثلاً 15000000">
     <div class="section-title">🔐 نوع سیو اکانت</div>
-    <div class="choices" id="saveChoices"><button type="button" class="choice" data-value="Activision">Activision</button><button type="button" class="choice" data-value="Google">Google</button><button type="button" class="choice" data-value="Facebook">Facebook</button></div><input id="saveType" type="hidden">
+    <div class="choices" id="saveChoices"><button type="button" class="choice" data-value="Activision">Activision</button><button type="button" class="choice" data-value="Google">گوگل</button><button type="button" class="choice" data-value="Facebook">فیسبوک</button></div><input id="saveType" type="hidden">
     <label for="seller">👤 آیدی فروشنده (تلگرام)</label><input id="seller" placeholder="@username">
     <label for="description">📝 توضیحات اضافه</label><textarea id="description" maxlength="700" placeholder="توضیحات مربوط به اکانت..."></textarea>
     <div class="upload"><label for="file" class="upload-label">📸 انتخاب عکس اکانت<br>حداکثر ۵ عکس</label><input id="file" type="file" accept="image/*" multiple></div>
     <div class="thumbs" id="thumbs"></div>
-    <div class="warn">📸 عکس اکانت را همراه آگهی در تلگرام ارسال کنید.<br>⚠️ در صورت ناقص بودن اطلاعات، آگهی ممکن است تأیید نشود.</div>
+    <div class="warn">📸 عکس اکانت را همراه آگهی در تلگرام ارسال کنید.<br>⚠️ در صورت ناقص بودن اطلاعات، ممکن است اعلام شود.</div>
     <div class="err" id="err" role="alert"></div>
     <button class="btn" type="submit">🚀 ارسال آگهی به ادمین</button><button class="btn close" type="button" id="close">بستن</button>
   </form>
@@ -212,9 +212,9 @@ function transitionTo(nextId, afterShow){
       nextView.style.display="block";
     }
     nextView.classList.add("view-enter");
-    currentView=nextId;
-    if(typeof afterShow === "function") afterShow();
-  }, oldView ? 155 : 0);
+    نمای فعلی=شناسه بعدی;
+    اگر (نوع afterShow === "تابع") afterShow();
+  }، oldView ? 155 : 0);
 }
 document.getElementById("goMain").onclick=function(){transitionTo("homeScreen");};
 document.getElementById("support").onclick=function(){transitionTo("supportScreen");};
@@ -222,14 +222,14 @@ document.getElementById("backSupport").onclick=function(){transitionTo("homeScre
 document.getElementById("pingApp").onclick=function(){transitionTo("pingScreen");};
 document.getElementById("backPing").onclick=function(){transitionTo("homeScreen");};
 document.getElementById("sendSupport").onclick=function(){
-  var message=document.getElementById("supportMessage").value.trim();
+  متغیر message=document.getElementById("supportMessage").value.trim();
   var supportErr=document.getElementById("supportErr");
   if(!message){supportErr.textContent="⚠️ لطفاً اول مشکلت رو بنویس.";return;}
   supportErr.textContent="در حال باز کردن تلگرام...";
   openTelegramMessage("🆘 درخواست پشتیبانی VGR STORE\n\n"+message);
 };
-document.getElementById("open").onclick=function(){err.textContent="";dlg.showModal();};
-document.getElementById("close").onclick=function(){dlg.close();};
+document.getElementById("باز کردن").onclick=function(){err.textContent="";dlg.showModal();};
+document.getElementById("بستن").onclick=function(){dlg.close();};
 document.getElementById("buy").onclick=function(){transitionTo("buyScreen",loadAds);};
 document.getElementById("cp").onclick=function(){transitionTo("cpScreen");};
 document.getElementById("backHome").onclick=function(){transitionTo("homeScreen");};
@@ -237,17 +237,17 @@ document.getElementById("backHomeCp").onclick=function(){transitionTo("homeScree
 document.getElementById("backAds").onclick=function(){transitionTo("buyScreen");};
 document.getElementById("refreshAds").onclick=loadAds;
 document.getElementById("largeCp").onclick=function(){openTelegramMessage("درود، برای خرید CP حجم بالا پیام دادم.");};
-[80,160,240,320,400,420,480].forEach(function(n){var box=document.createElement("div");box.className="cp-item";box.innerHTML='<div class="cp-name">'+n+' CP</div><button class="btn" type="button">🛒 خرید</button>';box.querySelector("button").onclick=function(){openTelegramMessage("درود، برای خرید "+n+" CP کالاف دیوتی موبایل پیام دادم.");};document.getElementById("cpGrid").appendChild(box);});
+[80,160,240,320,400,420,480].forEach(function(n){var box=document.createElement("div");box.className="cp-item";box.innerHTML='<div class="cp-name">'+class="n+n+t" type="button">🛒 خرید</button>';box.querySelector("button").onclick=function(){openTelegramMessage("درود، برای خرید "+n+" CP کالاف دیوتی موبایل پیام دادم.");};document.getElementById(").apppGri;
 
-async function loadAds(){
+تابع ناهمگام loadAds(){
   adsList.innerHTML='<div class="loading">⏳ در حال دریافت آگهی‌ها...</div>';
-  try{
-    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timeoutId = controller ? setTimeout(function(){controller.abort();}, 10000) : null;
-    var response;
-    try {
-      response = await fetch(ADS_URL+"?t="+Date.now(), {
-        cache:"no-store",
+  امتحان کنید{
+    متغیر کنترلر = نوع کنترلر AbortController !== "تعریف نشده" ? new AbortController(): null;
+    var timeoutId = controller ? setTimeout(function(){controller.abort();}, 10000): null; // شناسه برنامه: var timeoutId = controller ? // شناسه برنامه: setTimeout(function(){controller.abort();}, 10000) null;
+    پاسخ متغیر؛
+    امتحان کنید {
+      پاسخ = منتظر دریافت (ADS_URL+"?t="+Date.now(), {
+        حافظه پنهان: "بدون ذخیره",
         signal: controller ? controller.signal : undefined
       });
     } finally {
@@ -320,33 +320,33 @@ document.getElementById("f").onsubmit=function(e){
   if(!/^\d+$/.test(level)){err.textContent="❌ لول اکانت باید عدد باشد.";return;}
   if(!/^\d+$/.test(legendary)||!/^\d+$/.test(mythic)||!/^\d+$/.test(price)){err.textContent="❌ تعداد گان‌ها و قیمت باید عدد باشند.";return;}
   if(!files.length){err.textContent="📸 حداقل یک عکس اکانت انتخاب کنید.";return;}
-  var text="📋 آگهی فروش اکانت کالاف\n━━━━━━━━━━━━━━\n\n🆔 UID: "+uid+"\n👤 اسم اکانت: "+name+"\n⭐ لول اکانت: "+level+"\n🏆 رنک: "+rank+"\n🔥 تعداد گان لجند: "+legendary+"\n🔮 تعداد گان میتیک: "+mythic+"\n💰 قیمت: "+price+" تومان\n🔐 نوع سیو: "+saveType+"\n👤 آیدی فروشنده: "+seller+(description?"\n\n📝 توضیحات:\n"+description:"")+"\n\n━━━━━━━━━━━━━━\n📸 تعداد عکس: "+files.length+"\n\n⚠️ لطفاً عکس‌های اکانت را نیز در همین چت ارسال کنید.";
+  var text="📋 آگهی فروش اکانت کالاف\n━━━━━━━━━━━━━━\n\n🆔 UID: "+uid+"\n "+rank+"\n🔥 تعداد گان لجند: "+legendary+"\n🔮 تعداد گان میتیک: "+mythic+"\n💰 قیمت: "+price+" تومان\n🔐 نوع سیو: "+saveType+"\n👤 فروشنده آیدی: "+seller+\nscript" توضیحات:\n"+توضیحات:"")+"\n\n━━━━━━━━━━━━━━\n📸 تعداد عکس: "+files.length+"\n\n⚠️لطفاً عکس‌های همین چانت را بکنید."
   err.className="err success";err.textContent="✅ آگهی آماده شد؛ در حال باز کردن تلگرام...";
-  setTimeout(function(){openTelegramMessage(text);},300);
+  تابع ()setTimeout{openTelegramMessage(text);},300);
 };
 </script>
 
-<!-- VGR PROFILE + GAME ADDITIONS -->
-<style>
+<!-- پروفایل VGR + اضافات بازی -->
+<سبک>
 .profile-bar{display:flex;justify-content:flex-start;align-items:center;gap:9px;margin:8px 0 14px}
 .profile-trigger{display:flex;align-items:center;gap:8px;background:#160b0d;color:white;border:1px solid var(--border);border-radius:30px;padding:7px 12px;cursor:pointer}
 .avatar{width:30px;height:30px;border-radius:50%;object-fit:cover;background:#301016;display:grid;place-items:center}
-#profileDlg input{margin-top:6px}
+#profileDlg ورودی{margin-top:6px}
 .game-screen{display:none;background:radial-gradient(circle at 50% 35%,#380b12,#090707 65%);border:1px solid #6f1424;border-radius:24px;padding:18px;min-height:70vh}
 .game-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.coin{font-size:20px;font-weight:bold;color:#ff526c}
+.coin{اندازه-فونت: 20px;وزن-فونت: پررنگ;رنگ:#ff526c}
 .progress{height:10px;background:#291016;border-radius:9px;overflow:hidden;margin:18px 0}
 .progress>div{height:100%;width:0;background:linear-gradient(90deg,#a20c27,#ff536b);transition:width .2s}
 .game-orb{width:min(68vw,280px);aspect-ratio:1;border-radius:50%;margin:28px auto;display:grid;place-items:center;text-align:center;color:#fff;font-size:27px;font-weight:bold;border:5px solid #ff3155;background:radial-gradient(circle at 35% 25%,#9b2038,#25070d 65%);box-shadow:0 0 35px #c0193c66,inset 0 0 30px #ff315533;cursor:pointer;user-select:none;position:relative}
 .game-orb{transition:transform .16s ease,box-shadow .16s ease}.game-orb:active{transform:scale(.94)}
 .game-screen.view-enter{animation:viewEnter .28s cubic-bezier(.2,.75,.25,1) both}.game-screen.view-exit{animation:viewExit .16s ease both}
-@media(prefers-reduced-motion:reduce){.game-screen.view-enter,.game-screen.view-exit{animation-duration:.01ms!important}}
+@media(preferred-reduced-motion:reduce){.game-screen.view-enter,.game-screen.view-exit{animation-duration:.01ms!important}}
 .float-one{position:absolute;color:#ffb3c0;font-size:22px;animation:floatup .7s ease-out forwards;pointer-events:none}
-@keyframes floatup{to{transform:translateY(-65px);opacity:0}}
+‎@keyframes floatup{to{transform:translateY(-65px);opacity:0}}‎‏
 .game-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .game-sub{display:none}
 .game-panel{margin-top:14px;padding:15px;border:1px solid #551321;border-radius:16px;background:#14090c}
-@media(prefers-reduced-motion:reduce){.game-orb,.progress>div{transition:none}}
+@media(preferred-reduced-motion:reduce){.game-orb,.progress>div{transition:none}}
 </style>
 <div class="profile-bar" id="profileBar" style="display:none">
 <button class="profile-trigger" id="profileOpen"><span class="avatar" id="avatarIcon">👤</span><span id="profileName">کاربر</span></button>
@@ -359,20 +359,20 @@ document.getElementById("f").onsubmit=function(e){
 <div class="progress"><div id="coinProgress"></div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#cbaeb4"><span>موجودی</span><b id="levelTarget">1,000 سکه تا لول بعدی</b></div>
 <button class="game-orb" id="coinTap">🎮<br>VGR GAME</button>
 <div class="game-actions"><button class="btn" id="gameUpgrade">ارتقا 🔥</button><button class="btn cyan" id="gameProducts">محصولات ✅</button></div>
-<div class="game-panel game-sub" id="upgradePanel"><b>سرعت جمع‌آوری: +<span id="tapPower">1</span></b><p class="note">سکه روزانه: <span id="dailyAmount">100</span></p><div id="upgradeOptions"></div></div>
-<div class="game-panel game-sub" id="productPanel"><div style="display:flex;gap:12px;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Call_of_Duty_Mobile_logo.png/240px-Call_of_Duty_Mobile_logo.png" style="width:72px;height:72px;object-fit:contain" alt="Call of Duty Mobile"><div><b>اکانت شانسی کالاف دیوتی موبایل 🎁</b><p class="note">قیمت: 1,000 سکه</p></div></div><button class="btn" id="gameBuy" style="margin-top:12px">خرید محصول</button><div id="purchaseResult"></div></div>
+<div class="game-panel game-sub" id="upgradePanel"><b>سرعت جمع‌آوری: +<span id="tapPower">1</span></b><p class="note">سکه روزانه: <span id="dailyAmount">100</span></p><div id="vgrad">
+<div class="game-panel game-sub" id="productPanel"><div style="display:flex;gap:12px;align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Call_of_Duty_Mobile_logo.png/240px-Call_of_Duty_Mobile_logo.png" style="width:72px;height:72px:72px; Mobile"><div><b>اکانت شانسی کالاف دیوتی موبایل 🎁</b><p class="note">قیمت: 1000 سکه</p></div></div><button class="btn" id="gameBuy" style="margin-top:12px">خرید محصول</button><vsevReult</button><vsev>
 <button class="btn close" id="gameBack" style="margin-top:14px">↩️ بازگشت به صفحه اصلی</button></div>
-<script>
-(function(){
-const $=id=>document.getElementById(id);
+<اسکریپت>
+(تابع (){
+تابع const $=id=>document.getElementById(id);
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
-let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:500,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});
-if(!game.dailyLevel && game.daily<=300) game.daily=500;
-function dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
-function checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
-function saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
-function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');const targets=[1000,5000,20000];const target=targets.find(v=>game.coins<v)||20000;$('coinProgress').style.width=Math.min(100,(game.coins/target)*100)+'%';if($('levelTarget'))$('levelTarget').textContent=(game.coins>=20000?'بالاترین لول':target.toLocaleString('en-US')+' سکه تا لول بعدی');$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
-const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:800,c:950},{v:2000,c:1800}];
+‎let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:500,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});‎‏
+اگر (!game.dailyLevel && game.daily<=300) game.daily=500;
+تابع dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+تابع checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
+تابع saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
+تابع renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');const targets=[1000,5000,20000];const target=targets.find(v=>game.coins<v)||20000;$('coinProgress').style.width=Math.min(100,(game.coins/target)*100)+'%';if($('levelTarget'))$('levelTarget').textContent=(game.coins>=20000?'بالاترین لول':target.toLocaleString('en-US')+' سکه تا لول بعدی');$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
+توان‌های ثابت = [{v:2,c:120},{v:5,c:200},{v:10,c:800}],روزانه = [{v:800,c:950},{v:2000,c:1800}];
 $('upgradeOptions').innerHTML='';
 [[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<x.c){alert('سکه کافی نیست');return}game.coins-=x.c;if(i===0){game.power=x.v;game.powerLevel++}else{game.daily=x.v;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
 function showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').style.backgroundImage='none';$('avatarIcon').style.backgroundSize='cover';$('avatarIcon').style.backgroundPosition='center';$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar){$('avatarIcon').style.backgroundImage='url("'+profile.avatar+'")';$('avatarIcon').textContent='';}}
@@ -399,16 +399,16 @@ showProfile();renderGame();
 <style>
 /* پس‌زمینه‌ی متحرک سبک؛ در حالت کاهش حرکت خاموش می‌شود */
 body:after{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;background:radial-gradient(circle at 25% 30%,#ef233c12,transparent 28%),radial-gradient(circle at 75% 70%,#ef233c0d,transparent 30%);animation:bgDrift 22s ease-in-out infinite alternate}
-@keyframes bgDrift{from{transform:translate3d(-1%,0,0)}to{transform:translate3d(1%,1%,0)}}
-@media(prefers-reduced-motion:reduce){body:after{animation:none}}
-#profileBar{position:fixed!important;top:10px;left:10px;z-index:35;margin:0!important}
+‎@keyframes bgDrift{from{transform:translate3d(-1%,0,0)}to{transform:translate3d(1%,1%,0)}}‎
+@media(preferred-reduced-motion:reduce){body:after{animation:none}}
+#profileBar{موقعیت:ثابت!مهم;بالا:10px;چپ:10px;z-index:35;حاشیه:0!مهم}
 #globalCoinBadge{position:fixed;top:10px;right:10px;z-index:35;padding:9px 14px;border:1px solid #ef233c;border-radius:999px;background:#16090c;color:#ffd4dc;font-weight:800;box-shadow:0 4px 18px #0008;direction:ltr}
-body{padding-top:48px}
+بدنه{padding-top:48px}
 #profileDlg{z-index:30}
-.cp-product-dialog{width:min(92%,430px);padding:20px;background:#10090b;color:white;border:1px solid #ef233c;border-radius:20px}
+.cp-product-dialog{width:min(92%,430px);padding:20px;background:#10090b;color:white;border:1pxsolid #ef233c;border-radius:20px} کد: .cp-product-dialog{width:min(92%,430px);padding:20px;background:#10090b;color:white;border:1pxsolid#ef233c;border-radius:20px}
 .cp-product-dialog::backdrop{background:#000b}
 .cp-product-dialog h3{margin-bottom:14px}
-.cp-product-dialog p{line-height:2;color:#e8dce0}
+‎.cp-product-dialog p{line-height:2;color:#e8dce0}‎‏ (این یک کد است و نیازی به ترجمه ندارد.)
 </style>
 <dialog id="cpProductDialog" class="cp-product-dialog">
  <h3 id="cpProductTitle">خرید CP</h3>
@@ -417,20 +417,20 @@ body{padding-top:48px}
  <button class="btn" id="cpProductBuy">خرید و پیام به ادمین</button>
  <button class="btn close" id="cpProductClose">بستن</button>
 </dialog>
-<script>
-(function(){
+<اسکریپت>
+(تابع (){
  const dlg=document.getElementById('cpProductDialog');
- const title=document.getElementById('cpProductTitle'), price=document.getElementById('cpProductPrice'), pid=document.getElementById('cpProductId');
- let chosen=0;
- // نرخ پایه فعلی؛ برای نرخ زنده باید از API/بک‌اندی با دسترسی به منبع نرخ استفاده شود.
+ const title=document.getElementById('عنوان محصول')، price=document.getElementById('قیمت محصول')، pid=document.getElementById('شناسه محصول')؛
+ بگذارید انتخاب شده = 0؛
+ // نرخ پایه فعلی برای ارزیابی زنده باید از API/بکاندی با دسترسی به منبع استفاده شود.
  const tomanPerDollar=271000;
  document.querySelectorAll('#cpGrid .cp-item').forEach((box)=>{
    const label=box.querySelector('.cp-name').textContent;
-   const amount=parseInt(label,10)||0;
-   const btn=box.querySelector('button');
+   مقدار ثابت = parseInt(label,10)||0;
+   const btn=box.querySelector('دکمه');
    btn.onclick=()=>{
-     chosen=amount;
-     title.textContent='محصول: '+amount+' CP';
+     انتخاب شده=مقدار؛
+     title.textContent='محصول: '+مقدار+' CP';
      price.textContent='قیمت: '+Math.round(amount/80*tomanPerDollar).toLocaleString('fa-IR')+' تومان';
      pid.textContent='شناسه محصول: در حال حاضر تعریف نشده';
      dlg.showModal();
@@ -442,46 +442,46 @@ body{padding-top:48px}
  };
  document.getElementById('cpProductClose').onclick=()=>dlg.close();
 
- // نمایش جزئیات و گرفتن تأیید قبل از کسر سکه
+ // نمایش جزئیات و دریافت قبل از کسر سکه
  const originalBuy=document.getElementById('gameBuy').onclick;
  document.getElementById('gameBuy').onclick=function(){
-   if(game.coins<1000){alert('برای خرید به ۱٬۰۰۰ سکه نیاز داری');return;}
-   const ok=confirm('اسم محصول: اکانت شانسی کالاف دیوتی موبایل\nامن یا غیرامن بودن: شانسی\nقیمت: ۱٬۰۰۰ سکه\n\nخرید محصول و کسر ۱٬۰۰۰ سکه انجام شود؟');
-   if(ok) originalBuy();
+   if(game.coins<1000){alert('برای خرید به 1000 سکه نیاز داری');return;}
+   const ok=confirm('اسم محصول: اکانت شانسی کالاف دیوتی موبایل\نامن یا غیرممکن بودن: شانسی\nقیمت: 1,000 سکه\n\nخرید محصول و کسر 1,000 سکه انجام می شود؟');
+   اگر (ok) خرید اصلی () انجام شود.
  };
 })();
 </script>
 
 
-<style>
+<سبک>
 body:after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(circle at 25% 30%,#ef233c12,transparent 28%),radial-gradient(circle at 75% 70%,#ef233c0d,transparent 30%);animation:vgrBg 24s ease-in-out infinite alternate}
-@keyframes vgrBg{to{transform:translate3d(2%,1%,0)}}
-@media(prefers-reduced-motion:reduce){body:after{animation:none}}
-#profileBar{position:fixed!important;top:10px;left:10px;z-index:35;margin:0!important}
+‎@keyframes vgrBg{to{transform:translate3d(2%,1%,0)}}‎
+@media(preferred-reduced-motion:reduce){body:after{animation:none}}
+#profileBar{موقعیت:ثابت!مهم;بالا:10px;چپ:10px;z-index:35;حاشیه:0!مهم}
 #globalCoinBadge{position:fixed;top:10px;right:10px;z-index:35;padding:9px 14px;border:1px solid #ef233c;border-radius:12px;background:#16090c;color:#ffd4dc;font-weight:800;direction:ltr}
-body{padding-top:48px}
-#moreOptions{display:none;border:1px solid #ef233c;border-radius:20px;background:#10090b;padding:16px;margin-top:14px}
-#moreTabs{display:flex;gap:8px;margin:12px 0}
-#moreTabs button{flex:1}
-.cart-row,.order-row{padding:12px;margin:8px 0;border:1px solid #55202b;border-radius:12px;background:#180b0e}
+بدنه{padding-top:48px}
+#گزینه‌های_بیشتر{نمایش:هیچ؛حاشیه:۱پیکسل_جامد #ef233c؛شعاع_حاشیه:۲۰پیکسل؛پس_زمینه:#۱۰۰۹۰ب؛پدینگ:۱۶پیکسل؛حاشیه_بالا:۱۴پیکسل}
+#تب‌های_بیشتر{display:flex;gap:8px;margin:12px 0}
+دکمه #moreTabs{flex:1}
+‎.cart-row,.order-row{padding:12px;margin:8px 0;border:1px solid #55202b;border-radius:12px;background:#180b0e}‎‏
 </style>
-<div id="moreOptions">
- <h3>گزینه‌های بیشتر VGR GAME</h3>
- <div id="moreTabs"><button class="btn" id="tabUpgrades">ارتقا</button><button class="btn" id="tabProducts">محصولات</button><button class="btn" id="tabCart">سبد خرید</button><button class="btn" id="tabOrders">سفارشات</button></div>
+<div id="گزینه‌های بیشتر">
+ <h3>گزینه های بیشتر VGR GAME</h3>
+ <div id="moreTabs"><button class="btn" id="tabUpgrades">ارتقا</button><button class="btn" id="tabProducts">محصولات</button><button class="btn" id="tabCart">سبد خرید</button><button class="btton><n" class="btton" id="tabOrders">سفارشات</button></div>
  <div id="moreContent"></div>
 </div>
-<script>
-(function(){
- const $=id=>document.getElementById(id);
+<اسکریپت>
+(تابع (){
+ تابع const $=id=>document.getElementById(id);
  const gameRead=()=>{try{return JSON.parse(localStorage.getItem('vgr_game'))||{coins:0}}catch(e){return {coins:0}}};
  const ordersRead=()=>{try{return JSON.parse(localStorage.getItem('vgr_orders'))||[]}catch(e){return []}};
- let cart=JSON.parse(localStorage.getItem('vgr_cart')||'[]');
+ بگذارید سبد خرید = JSON.parse(localStorage.getItem('vgr_cart')||'[]');
  const saveCart=()=>localStorage.setItem('vgr_cart',JSON.stringify(cart));
- const content=$('moreContent');
- const moreBtn=document.createElement('button');moreBtn.className='btn';moreBtn.textContent='نمایش گزینه‌های بیشتر';
- $('gameScreen').insertBefore(moreBtn,$('gameBack'));
+ محتوای ثابت = $('محتوای بیشتر');
+ const moreBtn=document.createElement('button');moreBtn.className='btn';moreBtn.textContent='نمایش گزینه های بیشتر';
+ ‎$('صفحه بازی').insertBefore(moreBtn,$('بازی برگشت'));‎
  moreBtn.onclick=()=>{$('moreOptions').style.display=$('moreOptions').style.display==='block'?'none':'block';render('upgrades')};
- function render(tab){
+ تابع رندر (زبانه) {
   content.innerHTML='';
   if(tab==='upgrades'){content.innerHTML='<p>ارتقای سرعت و سقف سکه روزانه از بخش «ارتقا» در بازی در دسترس است.</p>';}
   if(tab==='products'){
@@ -503,4 +503,4 @@ body{padding-top:48px}
 
 </body>
 
-</html>
+   </html>
