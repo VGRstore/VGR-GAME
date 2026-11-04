@@ -356,7 +356,7 @@ document.getElementById("f").onsubmit=function(e){
 <div id="nameDlg" style="display:none;position:fixed;inset:0;background:#000d;z-index:20;place-items:center;padding:20px"><section class="card" style="width:min(100%,420px)"><h2>به VGR STORE خوش اومدی</h2><p class="note">برای ادامه یک نام انتخاب کن</p><input id="firstName" maxlength="35" placeholder="نام شما"><button class="btn" id="firstNameSave" style="margin-top:12px">تأیید و ورود</button></section></div>
 <div id="gameScreen" class="game-screen">
 <div class="game-top"><div class="coin">🪙 <span id="coinBalance">0</span> <button class="refresh-btn" id="gameRefresh">↻</button></div><b>🎮 VGR GAME 🎮</b></div>
-<div class="progress"><div id="coinProgress"></div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#cbaeb4"><span>موجودی</span><span>هدف 1,000 سکه</span></div>
+<div class="progress"><div id="coinProgress"></div></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#cbaeb4"><span>موجودی</span><b id="levelTarget">1,000 سکه تا لول بعدی</b></div>
 <button class="game-orb" id="coinTap">🎮<br>VGR GAME</button>
 <div class="game-actions"><button class="btn" id="gameUpgrade">ارتقا 🔥</button><button class="btn cyan" id="gameProducts">محصولات ✅</button></div>
 <div class="game-panel game-sub" id="upgradePanel"><b>سرعت جمع‌آوری: +<span id="tapPower">1</span></b><p class="note">سکه روزانه: <span id="dailyAmount">100</span></p><div id="upgradeOptions"></div></div>
@@ -366,13 +366,13 @@ document.getElementById("f").onsubmit=function(e){
 (function(){
 const $=id=>document.getElementById(id);
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
-let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:300,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});
-if(!game.dailyLevel && game.daily<=100) game.daily=300;
+let profile=read('vgr_profile',null), game=read('vgr_game',{coins:0,power:1,daily:500,powerLevel:0,dailyLevel:0,dayKey:'',earnedToday:0});
+if(!game.dailyLevel && game.daily<=300) game.daily=500;
 function dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
 function saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
-function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');$('coinProgress').style.width=Math.min(100,game.coins/10)+'%';$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
-const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:450,c:550},{v:800,c:950}];
+function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');const targets=[1000,5000,20000];const target=targets.find(v=>game.coins<v)||20000;$('coinProgress').style.width=Math.min(100,(game.coins/target)*100)+'%';if($('levelTarget'))$('levelTarget').textContent=(game.coins>=20000?'بالاترین لول':target.toLocaleString('en-US')+' سکه تا لول بعدی');$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
+const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:800,c:950},{v:2000,c:1800}];
 $('upgradeOptions').innerHTML='';
 [[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<x.c){alert('سکه کافی نیست');return}game.coins-=x.c;if(i===0){game.power=x.v;game.powerLevel++}else{game.daily=x.v;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
 function showProfile(){if(!profile){$('nameDlg').style.display='grid';return}$('profileBar').style.display='flex';$('profileName').textContent=profile.name;$('avatarIcon').style.backgroundImage='none';$('avatarIcon').style.backgroundSize='cover';$('avatarIcon').style.backgroundPosition='center';$('avatarIcon').textContent=profile.avatar?'': '👤';if(profile.avatar){$('avatarIcon').style.backgroundImage='url("'+profile.avatar+'")';$('avatarIcon').textContent='';}}
@@ -445,9 +445,59 @@ body{padding-top:48px}
  // نمایش جزئیات و گرفتن تأیید قبل از کسر سکه
  const originalBuy=document.getElementById('gameBuy').onclick;
  document.getElementById('gameBuy').onclick=function(){
+   if(game.coins<1000){alert('برای خرید به ۱٬۰۰۰ سکه نیاز داری');return;}
    const ok=confirm('اسم محصول: اکانت شانسی کالاف دیوتی موبایل\nامن یا غیرامن بودن: شانسی\nقیمت: ۱٬۰۰۰ سکه\n\nخرید محصول و کسر ۱٬۰۰۰ سکه انجام شود؟');
    if(ok) originalBuy();
  };
+})();
+</script>
+
+
+<style>
+body:after{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(circle at 25% 30%,#ef233c12,transparent 28%),radial-gradient(circle at 75% 70%,#ef233c0d,transparent 30%);animation:vgrBg 24s ease-in-out infinite alternate}
+@keyframes vgrBg{to{transform:translate3d(2%,1%,0)}}
+@media(prefers-reduced-motion:reduce){body:after{animation:none}}
+#profileBar{position:fixed!important;top:10px;left:10px;z-index:35;margin:0!important}
+#globalCoinBadge{position:fixed;top:10px;right:10px;z-index:35;padding:9px 14px;border:1px solid #ef233c;border-radius:12px;background:#16090c;color:#ffd4dc;font-weight:800;direction:ltr}
+body{padding-top:48px}
+#moreOptions{display:none;border:1px solid #ef233c;border-radius:20px;background:#10090b;padding:16px;margin-top:14px}
+#moreTabs{display:flex;gap:8px;margin:12px 0}
+#moreTabs button{flex:1}
+.cart-row,.order-row{padding:12px;margin:8px 0;border:1px solid #55202b;border-radius:12px;background:#180b0e}
+</style>
+<div id="moreOptions">
+ <h3>گزینه‌های بیشتر VGR GAME</h3>
+ <div id="moreTabs"><button class="btn" id="tabUpgrades">ارتقا</button><button class="btn" id="tabProducts">محصولات</button><button class="btn" id="tabCart">سبد خرید</button><button class="btn" id="tabOrders">سفارشات</button></div>
+ <div id="moreContent"></div>
+</div>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const gameRead=()=>{try{return JSON.parse(localStorage.getItem('vgr_game'))||{coins:0}}catch(e){return {coins:0}}};
+ const ordersRead=()=>{try{return JSON.parse(localStorage.getItem('vgr_orders'))||[]}catch(e){return []}};
+ let cart=JSON.parse(localStorage.getItem('vgr_cart')||'[]');
+ const saveCart=()=>localStorage.setItem('vgr_cart',JSON.stringify(cart));
+ const content=$('moreContent');
+ const moreBtn=document.createElement('button');moreBtn.className='btn';moreBtn.textContent='نمایش گزینه‌های بیشتر';
+ $('gameScreen').insertBefore(moreBtn,$('gameBack'));
+ moreBtn.onclick=()=>{$('moreOptions').style.display=$('moreOptions').style.display==='block'?'none':'block';render('upgrades')};
+ function render(tab){
+  content.innerHTML='';
+  if(tab==='upgrades'){content.innerHTML='<p>ارتقای سرعت و سقف سکه روزانه از بخش «ارتقا» در بازی در دسترس است.</p>';}
+  if(tab==='products'){
+   content.innerHTML='<div class="cart-row"><b>اکانت شانسی کالاف دیوتی موبایل</b><p>قیمت: 1,000 سکه</p><button class="btn" id="addCart">افزودن به سبد خرید</button></div>';
+   $('addCart').onclick=()=>{let item=cart.find(x=>x.id==='random');if(item)item.qty++;else cart.push({id:'random',name:'اکانت شانسی کالاف دیوتی موبایل',price:1000,qty:1});saveCart();render('products');};
+  }
+  if(tab==='cart'){
+   if(!cart.length){content.textContent='سبد خرید خالی است.';return;}
+   let total=0;
+   cart.forEach((item,i)=>{total+=item.price*item.qty;let row=document.createElement('div');row.className='cart-row';row.innerHTML='<b>'+item.name+'</b><p>تعداد: <input type="number" min="1" max="99" value="'+item.qty+'" style="width:75px"></p><p>جمع: '+(item.price*item.qty).toLocaleString('en-US')+' سکه</p><button class="btn">حذف</button>';row.querySelector('input').onchange=e=>{item.qty=Math.max(1,Math.min(99,parseInt(e.target.value)||1));saveCart();render('cart')};row.querySelector('button').onclick=()=>{cart.splice(i,1);saveCart();render('cart')};content.appendChild(row)});
+   let summary=document.createElement('div');summary.innerHTML='<b>مجموع: '+total.toLocaleString('en-US')+' سکه</b><button class="btn" id="payCart">پرداخت با سکه</button>';content.appendChild(summary);
+   $('payCart').onclick=()=>{let g=gameRead();if(g.coins<total){alert('سکه کافی نیست');return}if(!confirm('پرداخت '+total.toLocaleString('en-US')+' سکه انجام شود؟'))return;g.coins-=total;localStorage.setItem('vgr_game',JSON.stringify(g));let orders=ordersRead();orders.push({id:Date.now(),items:cart.map(x=>({...x})),total,status:'در انتظار دریافت',date:new Date().toISOString()});localStorage.setItem('vgr_orders',JSON.stringify(orders));cart=[];saveCart();content.innerHTML='<div style="text-align:center;font-size:44px">✅</div><h3 style="text-align:center">پرداخت موفق بود</h3><p>از همین صفحه اسکرین‌شات بگیر و برای ادمین @Parsa_xxxxx بفرست.</p><button class="btn" id="sendAdmin">باز کردن تلگرام ادمین</button>';if($('sendAdmin'))$('sendAdmin').onclick=()=>window.open('https://t.me/Parsa_xxxxx','_blank');if(typeof renderGame==='function')renderGame();};
+  }
+  if(tab==='orders'){let orders=ordersRead();if(!orders.length){content.textContent='هنوز سفارشی ثبت نشده.';return}orders.forEach(o=>{let row=document.createElement('div');row.className='order-row';row.innerHTML='<b>سفارش #'+o.id+'</b><p>مجموع: '+o.total.toLocaleString('en-US')+' سکه</p><p>وضعیت: '+o.status+'</p>';if(o.status==='در انتظار دریافت'){let yes=document.createElement('button');yes.className='btn';yes.textContent='دریافت کردم ✅';yes.onclick=()=>{o.status='تحویل داده شد';localStorage.setItem('vgr_orders',JSON.stringify(orders));render('orders')};let no=document.createElement('button');no.className='btn';no.textContent='دریافت نکردم ❌';no.onclick=()=>{o.status='گزارش عدم دریافت';localStorage.setItem('vgr_orders',JSON.stringify(orders));render('orders')};row.append(yes,no)}content.appendChild(row)})}
+ }
+ $('tabUpgrades').onclick=()=>render('upgrades');$('tabProducts').onclick=()=>render('products');$('tabCart').onclick=()=>render('cart');$('tabOrders').onclick=()=>render('orders');
 })();
 </script>
 
