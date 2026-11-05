@@ -371,7 +371,7 @@ if(!game.dailyLevel && game.daily<=300) game.daily=500;
 function dayKey(){let d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function checkDaily(){let today=dayKey();if(game.dayKey!==today){game.dayKey=today;game.earnedToday=0;localStorage.setItem('vgr_game',JSON.stringify(game));}}
 function saveGame(){checkDaily();localStorage.setItem('vgr_game',JSON.stringify(game));renderGame()}
-function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('fa-IR');$('globalCoinBalance').textContent=game.coins.toLocaleString('fa-IR');const targets=[1000,5000,20000];const target=targets.find(v=>game.coins<v)||20000;$('coinProgress').style.width=Math.min(100,(game.coins/target)*100)+'%';if($('levelTarget'))$('levelTarget').textContent=(game.coins>=20000?'بالاترین لول':target.toLocaleString('en-US')+' سکه تا لول بعدی');$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
+function renderGame(){checkDaily();$('coinBalance').textContent=game.coins.toLocaleString('en-US');$('globalCoinBalance').textContent=game.coins.toLocaleString('en-US');const targets=[1000,5000,20000];const target=targets.find(v=>game.coins<v)||20000;$('coinProgress').style.width=Math.min(100,(game.coins/target)*100)+'%';if($('levelTarget'))$('levelTarget').textContent=(game.coins>=20000?'بالاترین لول':target.toLocaleString('en-US')+' سکه تا لول بعدی');$('tapPower').textContent=game.power;$('dailyAmount').textContent=game.daily+' (باقی‌مانده امروز: '+Math.max(0,game.daily-game.earnedToday)+')';
 const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:800,c:950},{v:2000,c:1800}];
 $('upgradeOptions').innerHTML='';
 [[powers,game.powerLevel,'ارتقای سرعت'],[daily,game.dailyLevel,'ارتقای سکه روزانه']].forEach(([arr,idx,label],i)=>{if(idx>=arr.length)return;let x=arr[idx],b=document.createElement('button');b.className='btn';b.style.marginTop='10px';b.textContent=label+' به '+x.v+' ('+x.c+' سکه)';b.onclick=()=>{if(game.coins<x.c){alert('سکه کافی نیست');return}game.coins-=x.c;if(i===0){game.power=x.v;game.powerLevel++}else{game.daily=x.v;game.dailyLevel++}saveGame()};$('upgradeOptions').appendChild(b)})}
@@ -431,14 +431,14 @@ body{padding-top:48px}
    btn.onclick=()=>{
      chosen=amount;
      title.textContent='محصول: '+amount+' CP';
-     price.textContent='قیمت: '+Math.round(amount/80*tomanPerDollar).toLocaleString('fa-IR')+' تومان';
+     price.textContent='قیمت: '+Math.round(amount/80*tomanPerDollar).toLocaleString('en-US')+' تومان';
      pid.textContent='شناسه محصول: در حال حاضر تعریف نشده';
      dlg.showModal();
    };
  });
  document.getElementById('cpProductBuy').onclick=()=>{
    dlg.close();
-   openTelegramMessage('سلام، برای خرید CP پیام دادم.\nمحصول: '+chosen+' CP\nقیمت تقریبی: '+Math.round(chosen/80*tomanPerDollar).toLocaleString('fa-IR')+' تومان');
+   openTelegramMessage('سلام، برای خرید CP پیام دادم.\nمحصول: '+chosen+' CP\nقیمت تقریبی: '+Math.round(chosen/80*tomanPerDollar).toLocaleString('en-US')+' تومان');
  };
  document.getElementById('cpProductClose').onclick=()=>dlg.close();
 
@@ -501,6 +501,56 @@ body{padding-top:48px}
 })();
 </script>
 
+
+<!-- VGR STORE UI POLISH: rectangular profile, softer coin glow, button motion, English digits -->
+<style>
+/* Profile: compact rectangular capsule rather than a pill */
+.profile-trigger{
+  border-radius:12px!important;
+  padding:6px 11px!important;
+  min-height:44px;
+  border-color:rgba(239,35,60,.30)!important;
+  background:rgba(22,11,13,.94)!important;
+}
+.profile-trigger .avatar{flex:0 0 30px}
+/* Reduce the red glow around the global coin balance */
+#globalCoinBadge{
+  border-color:rgba(239,35,60,.48)!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.28)!important;
+  background:rgba(22,9,12,.96)!important;
+}
+/* Lightweight entrance, hover and press feedback for all interactive buttons */
+@keyframes vgrButtonEnter{from{opacity:0;transform:translateY(5px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes vgrButtonPress{0%{transform:scale(1)}45%{transform:scale(.965)}100%{transform:scale(1)}}
+@keyframes vgrButtonLeave{to{opacity:0;transform:translateY(-4px) scale(.985)}}
+button,.refresh-btn,.choice{
+  animation:vgrButtonEnter .22s ease-out both;
+  transition:transform .16s ease,filter .16s ease,background-color .16s ease,border-color .16s ease;
+}
+button:active,.refresh-btn:active,.choice:active{animation:vgrButtonPress .18s ease-out;filter:brightness(1.12)}
+button.vgr-leaving{animation:vgrButtonLeave .14s ease-in forwards!important;pointer-events:none}
+@media(hover:hover) and (pointer:fine){button:hover,.refresh-btn:hover,.choice:hover{filter:brightness(1.12);transform:translateY(-1px)}}
+@media(prefers-reduced-motion:reduce){
+  button,.refresh-btn,.choice{animation:none!important;transition:none!important}
+  button:active,.refresh-btn:active,.choice:active{transform:none!important}
+}
+</style>
+<script>
+/* Keep all visible numerals in English, including content inserted dynamically. */
+(function(){
+  const digitMap={'۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9','٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9'};
+  const toEnglishDigits=value=>String(value).replace(/[۰-۹٠-٩]/g,ch=>digitMap[ch]||ch);
+  function fixTextNode(node){if(node.nodeType===Node.TEXT_NODE && node.parentElement && !/^(SCRIPT|STYLE|TEXTAREA)$/i.test(node.parentElement.tagName)){const fixed=toEnglishDigits(node.nodeValue);if(fixed!==node.nodeValue)node.nodeValue=fixed;}}
+  function fixElement(el){if(!el||el.nodeType!==Node.ELEMENT_NODE)return;['placeholder','title','aria-label'].forEach(a=>{if(el.hasAttribute(a)){const v=el.getAttribute(a),n=toEnglishDigits(v);if(v!==n)el.setAttribute(a,n)}});if(el.matches('input,output')){if(el.value){const v=el.value,n=toEnglishDigits(v);if(v!==n)el.value=n}}}
+  function scan(root){if(root.nodeType===Node.TEXT_NODE){fixTextNode(root);return}if(root.nodeType!==Node.ELEMENT_NODE && root!==document)return;fixElement(root);const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=walker.nextNode()))fixTextNode(n);if(root.querySelectorAll)root.querySelectorAll('input,output,[placeholder],[title],[aria-label]').forEach(fixElement)}
+  scan(document);
+  const observer=new MutationObserver(records=>records.forEach(record=>{if(record.type==='characterData')fixTextNode(record.target);else record.addedNodes.forEach(scan);if(record.type==='attributes')fixElement(record.target)}));
+  observer.observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label']});
+  /* Give dynamically rendered buttons the same subtle entrance animation. */
+  document.addEventListener('pointerdown',event=>{const b=event.target.closest&&event.target.closest('button,.refresh-btn,.choice');if(!b)return;b.classList.remove('vgr-leaving');},true);
+})();
+</script>
+
 </body>
 
-  </html>
+</html>
