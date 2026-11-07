@@ -551,6 +551,247 @@ button.vgr-leaving{animation:vgrButtonLeave .14s ease-in forwards!important;poin
 })();
 </script>
 
+
+<!-- VGR GAME PAGE-BASED REDESIGN -->
+<style>
+/* Keep the animated background subtle and inexpensive on mobile devices. */
+body:after{
+  content:"";position:fixed;inset:-12%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 22% 28%,rgba(239,35,60,.075),transparent 30%),
+             radial-gradient(circle at 78% 72%,rgba(239,35,60,.055),transparent 32%);
+  animation:vgrBgSoft 28s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes vgrBgSoft{to{transform:translate3d(1%,.6%,0)}}
+@media(prefers-reduced-motion:reduce){body:after{animation:none;will-change:auto}}
+#profileSummary{padding:14px;border:1px solid rgba(239,35,60,.2);border-radius:15px;background:rgba(255,255,255,.025);margin:14px 0}
+#profileSummary .summary-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#301016;display:grid;place-items:center;font-size:28px;margin:0 auto 10px}
+#profileSummary p{line-height:2;text-align:center;color:#eadde0}
+#profileEditFields{display:none}
+#profileEditFields.active{display:block}
+#gameScreen{min-height:0;padding-bottom:24px}
+#gameScreen .game-orb{animation:none!important;box-shadow:inset 0 0 20px rgba(255,49,85,.12)!important;transition:none!important}
+#gameScreen .game-orb:active{transform:none!important;filter:none!important}
+#gameScreen .game-actions{margin-top:14px}
+#gameSubPages{margin-top:14px}
+.game-page{display:none;padding:16px;border:1px solid rgba(239,35,60,.32);border-radius:18px;background:rgba(16,8,11,.96);animation:viewEnter .22s ease-out both}
+.game-page.active{display:block}
+.game-page-title{font-size:19px;font-weight:bold;margin-bottom:14px;color:#fff1f3}
+.game-page-back{margin-bottom:14px}
+.game-product-row{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:right;padding:15px;margin:9px 0;border:1px solid rgba(239,35,60,.28);border-radius:14px;background:rgba(239,35,60,.055);color:#fff;cursor:pointer}
+.game-product-row strong{font-size:14px}
+.game-product-row span{font-size:12px;color:#ff9aaa;white-space:nowrap}
+.game-detail{padding:14px;border:1px solid rgba(239,35,60,.22);border-radius:14px;background:rgba(255,255,255,.025);line-height:2;margin:12px 0}
+.game-cart-row{padding:13px;margin:9px 0;border:1px solid rgba(239,35,60,.24);border-radius:13px;background:#180b0e;line-height:2}
+.game-cart-row .remove-item{margin-top:8px}
+#gameMorePage .more-info{padding:14px;border:1px solid rgba(239,35,60,.2);border-radius:14px;background:rgba(255,255,255,.025);line-height:2;color:#dfcbd0}
+@media(prefers-reduced-motion:reduce){.game-page{animation:none}}
+</style>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const game=$('gameScreen');
+  if(!game) return;
+
+  /* Profile opens in read-only mode first; editing is a separate action. */
+  const profileDlg=$('profileDlg');
+  if(profileDlg){
+    const oldContent=profileDlg.querySelector('.dialog-inner');
+    if(oldContent && !$('profileSummary')){
+      const summary=document.createElement('div');
+      summary.id='profileSummary';
+      summary.innerHTML='<div class="summary-avatar" id="profileSummaryAvatar">👤</div><p><b>اطلاعات پروفایل</b></p><p>نام نمایشی: <span id="profileSummaryName">-</span></p>';
+      const edit=document.createElement('div');
+      edit.id='profileEditFields';
+      const labels=Array.from(oldContent.querySelectorAll('label,input,.err')).filter(el=>el.id!=='profileErr');
+      labels.forEach(el=>edit.appendChild(el));
+      const save=$('profileSave');
+      const del=$('profileDelete');
+      if(save) edit.appendChild(save);
+      if(del) edit.appendChild(del);
+      oldContent.insertBefore(summary,oldContent.firstChild);
+      oldContent.insertBefore(edit,oldContent.children[1]);
+      const editBtn=document.createElement('button');
+      editBtn.type='button';editBtn.className='btn';editBtn.id='profileEditToggle';editBtn.textContent='✏️ ویرایش اطلاعات';
+      oldContent.insertBefore(editBtn,edit);
+      editBtn.onclick=()=>{edit.classList.toggle('active');editBtn.textContent=edit.classList.contains('active')?'بستن ویرایش':'✏️ ویرایش اطلاعات'};
+      const close=$('profileClose');
+      if(close){close.textContent='بستن';}
+    }
+    const originalProfileOpen=$('profileOpen');
+    if(originalProfileOpen){
+      originalProfileOpen.onclick=()=>{
+        try{
+          const profile=JSON.parse(localStorage.getItem('vgr_profile')||'null');
+          if(!profile)return;
+          $('profileSummaryName').textContent=profile.name||'-';
+          const avatar=$('profileSummaryAvatar');
+          avatar.textContent=profile.avatar?'':'👤';
+          avatar.style.backgroundImage=profile.avatar?'url("'+profile.avatar+'")':'none';
+          avatar.style.backgroundSize='cover';avatar.style.backgroundPosition='center';
+          $('profileNameInput').value=profile.name||'';
+          $('profileEditFields').classList.remove('active');
+          $('profileEditToggle').textContent='✏️ ویرایش اطلاعات';
+          profileDlg.showModal();
+        }catch(e){profileDlg.showModal()}
+      };
+    }
+  }
+
+  /* Convert the old expandable panels into distinct full pages. */
+  const oldUpgrade=$('upgradePanel'), oldProducts=$('productPanel');
+  if(oldUpgrade) oldUpgrade.style.display='none';
+  if(oldProducts) oldProducts.style.display='none';
+  const oldMore=$('moreOptions'); if(oldMore) oldMore.remove();
+  const oldMoreBtn=Array.from(game.querySelectorAll('button')).find(b=>b.textContent.trim()==='نمایش گزینه‌های بیشتر');
+  if(oldMoreBtn) oldMoreBtn.remove();
+
+  let pages=$('gameSubPages');
+  if(!pages){
+    pages=document.createElement('div');pages.id='gameSubPages';
+    const back=$('gameBack');
+    game.insertBefore(pages,back);
+  }
+  pages.innerHTML=`
+    <section class="game-page" id="gameUpgradePage">
+      <button class="btn game-page-back" type="button" data-game-back>↩️ بازگشت به VGR GAME</button>
+      <div class="game-page-title">🔥 ارتقای قابلیت‌ها</div>
+      <div class="game-detail">قدرت کلیک فعلی: <b id="pageTapPower">1</b><br>سکه روزانه: <b id="pageDailyAmount">100</b></div>
+      <div id="pageUpgradeOptions"></div>
+    </section>
+    <section class="game-page" id="gameProductsPage">
+      <button class="btn game-page-back" type="button" data-game-back>↩️ بازگشت به VGR GAME</button>
+      <div class="game-page-title">🛍️ محصولات VGR GAME</div>
+      <p class="support-hint">برای دیدن جزئیات، یکی از محصولات را انتخاب کن.</p>
+      <div id="gameProductList"></div>
+    </section>
+    <section class="game-page" id="gameProductDetailPage">
+      <button class="btn game-page-back" type="button" data-game-back="products">↩️ بازگشت به محصولات</button>
+      <div class="game-page-title" id="gameDetailName">جزئیات محصول</div>
+      <div class="game-detail" id="gameDetailInfo"></div>
+      <button class="btn" id="gameAddToCart">🛒 افزودن به سبد خرید</button>
+    </section>
+    <section class="game-page" id="gameMorePage">
+      <button class="btn game-page-back" type="button" data-game-back>↩️ بازگشت به VGR GAME</button>
+      <div class="game-page-title">⚙️ گزینه‌های بیشتر</div>
+      <div class="more-info">به بخش امکانات بیشتر VGR GAME خوش اومدی!<br>قابلیت‌های جدید این قسمت به‌مرور اضافه می‌شن. ❤️</div>
+      <button class="btn cyan" type="button" id="moreOpenCart" style="margin-top:12px">🛒 مشاهده سبد خرید</button>
+    </section>
+    <section class="game-page" id="gameCartPage">
+      <button class="btn game-page-back" type="button" data-game-back="products">↩️ بازگشت به محصولات</button>
+      <div class="game-page-title">🛒 سبد خرید</div>
+      <div id="gameCartContents"></div>
+    </section>`;
+
+  const products=[
+    {id:'free_account',name:'اکانت رایگان کالاف دیوتی موبایل 🎁',price:0,priceLabel:'رایگان',detail:'این محصول به‌صورت رایگان ارائه می‌شود. برای ثبت درخواست، آن را به سبد خرید اضافه کن.'},
+    {id:'free_config',name:'کانفیگ رایگان 📡',price:0,priceLabel:'رایگان',detail:'کانفیگ رایگان VGR STORE. برای ثبت درخواست دریافت، آن را به سبد خرید اضافه کن.'}
+  ];
+  let selectedProduct=null;
+  let cart=[];
+  try{cart=JSON.parse(localStorage.getItem('vgr_cart')||'[]');if(!Array.isArray(cart))cart=[];}catch(e){cart=[]}
+  const saveCart=()=>localStorage.setItem('vgr_cart',JSON.stringify(cart));
+  const allPages=Array.from(pages.querySelectorAll('.game-page'));
+  function showPage(id){
+    allPages.forEach(p=>p.classList.toggle('active',p.id===id));
+    const mainIds=['game-top','coinProgress','coinTap','gameUpgrade','gameProducts'];
+    game.querySelectorAll('.game-top,.progress,.progress + div,.game-orb,.game-actions').forEach(el=>el.style.display=id?'none':'');
+    if(!id){allPages.forEach(p=>p.classList.remove('active'));}
+    if(id==='gameCartPage')renderCart();
+    if(id==='gameUpgradePage')renderUpgrades();
+    if(id==='gameProductsPage')renderProducts();
+  }
+  function renderProducts(){
+    const list=$('gameProductList');list.innerHTML='';
+    products.forEach(product=>{
+      const row=document.createElement('button');row.type='button';row.className='game-product-row';
+      const name=document.createElement('strong');name.textContent=product.name;
+      const price=document.createElement('span');price.textContent=product.priceLabel;
+      row.append(name,price);row.onclick=()=>openProduct(product);list.appendChild(row);
+    });
+  }
+  function openProduct(product){
+    selectedProduct=product;
+    $('gameDetailName').textContent=product.name;
+    $('gameDetailInfo').textContent=product.detail+' قیمت: '+product.priceLabel+'.';
+    showPage('gameProductDetailPage');
+  }
+  $('gameAddToCart').onclick=()=>{
+    if(!selectedProduct)return;
+    const item=cart.find(x=>x.id===selectedProduct.id);
+    if(item)item.qty++;
+    else cart.push({id:selectedProduct.id,name:selectedProduct.name,price:selectedProduct.price,qty:1});
+    saveCart();
+    showPage('gameCartPage');
+  };
+  function renderCart(){
+    const root=$('gameCartContents');root.innerHTML='';
+    if(!cart.length){root.innerHTML='<div class="empty">سبد خریدت خالیه. ❤️</div><button class="btn" id="cartBackProducts">🛍️ مشاهده محصولات</button>';$('cartBackProducts').onclick=()=>showPage('gameProductsPage');return;}
+    cart.forEach((item,index)=>{
+      const row=document.createElement('div');row.className='game-cart-row';
+      const title=document.createElement('b');title.textContent=item.name;
+      const price=document.createElement('p');price.textContent='قیمت: '+(item.price===0?'رایگان':Number(item.price).toLocaleString('en-US')+' سکه')+' | تعداد: '+item.qty;
+      const remove=document.createElement('button');remove.type='button';remove.className='btn close remove-item';remove.textContent='حذف از سبد';
+      remove.onclick=()=>{cart.splice(index,1);saveCart();renderCart()};
+      row.append(title,price,remove);root.appendChild(row);
+    });
+    const submit=document.createElement('button');submit.type='button';submit.className='btn';submit.textContent='✅ ثبت درخواست خرید';
+    submit.onclick=()=>{
+      const summary=cart.map(x=>x.name+' × '+x.qty).join('\\n');
+      const order={id:Date.now(),items:cart.map(x=>({...x})),total:cart.reduce((n,x)=>n+x.price*x.qty,0),status:'در انتظار بررسی',date:new Date().toISOString()};
+      let orders=[];try{orders=JSON.parse(localStorage.getItem('vgr_orders')||'[]')}catch(e){}
+      orders.push(order);localStorage.setItem('vgr_orders',JSON.stringify(orders));
+      cart=[];saveCart();
+      root.innerHTML='<div class="empty">✅ درخواستت ثبت شد! برای پیگیری به ادمین پیام بده.</div><button class="btn" id="cartAdminMsg">📨 پیام به ادمین</button><button class="btn close" id="cartDone">بازگشت به بازی</button>';
+      $('cartAdminMsg').onclick=()=>openTelegramMessage('سلام، درخواست محصولات VGR GAME را ثبت کردم:\\n'+summary+'\\nشماره درخواست: '+order.id);
+      $('cartDone').onclick=()=>showPage(null);
+    };
+    root.appendChild(submit);
+  }
+  function renderUpgrades(){
+    const g=(()=>{try{return JSON.parse(localStorage.getItem('vgr_game'))||{coins:0,power:1,daily:100,powerLevel:0,dailyLevel:0}}catch(e){return {coins:0,power:1,daily:100,powerLevel:0,dailyLevel:0}}})();
+    $('pageTapPower').textContent=g.power||1;$('pageDailyAmount').textContent=g.daily||100;
+    const root=$('pageUpgradeOptions');root.innerHTML='';
+    const powers=[{v:2,c:120},{v:5,c:200},{v:10,c:800}],daily=[{v:150,c:120},{v:250,c:200},{v:500,c:450},{v:1000,c:900}];
+    const dailyLevel=Math.max(g.dailyLevel||0, g.daily>=1000?4:g.daily>=500?3:g.daily>=250?2:g.daily>=150?1:0);
+    [[powers,g.powerLevel||0,'افزایش قدرت کلیک'],[daily,dailyLevel,'افزایش سکه روزانه']].forEach(([arr,level,label],kind)=>{
+      const heading=document.createElement('h3');heading.textContent=label;heading.style.margin='14px 0 8px';root.appendChild(heading);
+      if(level>=arr.length){const done=document.createElement('p');done.className='support-hint';done.textContent='تمام ارتقاهای این بخش خریداری شده‌اند.';root.appendChild(done);return;}
+      const option=arr[level],btn=document.createElement('button');btn.type='button';btn.className='btn';btn.style.marginTop='7px';btn.textContent='ارتقا به '+option.v+' ('+option.c+' سکه)';
+      btn.onclick=()=>{
+        let current;try{current=JSON.parse(localStorage.getItem('vgr_game'))||g}catch(e){current=g}
+        if((current.coins||0)<option.c){alert('سکه کافی نیست.');return;}
+        current.coins-=option.c;
+        if(kind===0){current.power=option.v;current.powerLevel=(current.powerLevel||0)+1}
+        else{current.daily=option.v;current.dailyLevel=(current.dailyLevel||0)+1}
+        localStorage.setItem('vgr_game',JSON.stringify(current));
+        const shownCoins=(current.coins||0).toLocaleString('en-US');
+        if($('coinBalance'))$('coinBalance').textContent=shownCoins;
+        if($('globalCoinBalance'))$('globalCoinBalance').textContent=shownCoins;
+        renderUpgrades();
+      };
+      root.appendChild(btn);
+    });
+  }
+
+  $('gameUpgrade').onclick=()=>showPage('gameUpgradePage');
+  $('gameProducts').onclick=()=>showPage('gameProductsPage');
+  const moreBtn=document.createElement('button');moreBtn.type='button';moreBtn.className='btn cyan';moreBtn.id='gameMoreOptions';moreBtn.textContent='گزینه‌های بیشتر ⚙️';
+  const actions=game.querySelector('.game-actions');if(actions)actions.appendChild(moreBtn);
+  moreBtn.onclick=()=>showPage('gameMorePage');
+  $('moreOpenCart').onclick=()=>showPage('gameCartPage');
+  pages.addEventListener('click',e=>{
+    const back=e.target.closest('[data-game-back]');
+    if(!back)return;
+    const dest=back.getAttribute('data-game-back');
+    showPage(dest==='products'?'gameProductsPage':null);
+  });
+  /* Remove the click-orb entrance/pulse/press effects as requested. */
+  const orb=$('coinTap');
+  if(orb){orb.style.animation='none';orb.style.transition='none';orb.onpointerdown=null;orb.style.boxShadow='inset 0 0 20px rgba(255,49,85,.12)';}
+})();
+</script>
+
 </body>
 
 </html>
