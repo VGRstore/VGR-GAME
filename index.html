@@ -556,13 +556,15 @@ button.vgr-leaving{animation:vgrButtonLeave .14s ease-in forwards!important;poin
 <style>
 /* Keep the animated background subtle and inexpensive on mobile devices. */
 body:after{
-  content:"";position:fixed;inset:-12%;z-index:0;pointer-events:none;
-  background:radial-gradient(circle at 22% 28%,rgba(239,35,60,.075),transparent 30%),
-             radial-gradient(circle at 78% 72%,rgba(239,35,60,.055),transparent 32%);
-  animation:vgrBgSoft 28s ease-in-out infinite alternate;
-  will-change:transform;
+  content:"";position:fixed;inset:-28%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 18% 25%,rgba(239,35,60,.18),transparent 30%),
+             radial-gradient(ellipse at 82% 68%,rgba(255,54,86,.13),transparent 32%),
+             radial-gradient(ellipse at 55% 8%,rgba(130,20,45,.12),transparent 36%);
+  background-size:140% 140%;
+  animation:vgrBgFlow 17s ease-in-out infinite alternate;
+  will-change:transform,background-position;
 }
-@keyframes vgrBgSoft{to{transform:translate3d(1%,.6%,0)}}
+@keyframes vgrBgFlow{0%{transform:translate3d(-3%,-1%,0) scale(1);background-position:0% 30%}50%{background-position:65% 55%}100%{transform:translate3d(3%,2%,0) scale(1.06);background-position:100% 70%}}
 @media(prefers-reduced-motion:reduce){body:after{animation:none;will-change:auto}}
 #profileSummary{padding:14px;border:1px solid rgba(239,35,60,.2);border-radius:15px;background:rgba(255,255,255,.025);margin:14px 0}
 #profileSummary .summary-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#301016;display:grid;place-items:center;font-size:28px;margin:0 auto 10px}
@@ -684,12 +686,14 @@ body:after{
     </section>`;
 
   const products=[
-    {id:'free_account',name:'اکانت رایگان کالاف دیوتی موبایل 🎁',price:0,priceLabel:'رایگان',detail:'این محصول به‌صورت رایگان ارائه می‌شود. برای ثبت درخواست، آن را به سبد خرید اضافه کن.'},
-    {id:'free_config',name:'کانفیگ رایگان 📡',price:0,priceLabel:'رایگان',detail:'کانفیگ رایگان VGR STORE. برای ثبت درخواست دریافت، آن را به سبد خرید اضافه کن.'}
+    {id:'free_account',name:'اکانت رایگان کالاف دیوتی موبایل 🎁',price:15000,priceLabel:'15,000 سکه',detail:'برای ثبت درخواست دریافت اکانت رایگان کالاف دیوتی موبایل، محصول را به سبد خرید اضافه کن.'},
+    {id:'free_config',name:'کانفیگ رایگان 📡',price:20000,priceLabel:'20,000 سکه',detail:'برای ثبت درخواست دریافت کانفیگ رایگان، محصول را به سبد خرید اضافه کن.'}
   ];
   let selectedProduct=null;
   let cart=[];
   try{cart=JSON.parse(localStorage.getItem('vgr_cart')||'[]');if(!Array.isArray(cart))cart=[];}catch(e){cart=[]}
+  // Sync prices for items already saved in the cart after a store price update.
+  cart=cart.map(item=>{const current=products.find(p=>p.id===item.id);return current?{...item,name:current.name,price:current.price}:item;});
   const saveCart=()=>localStorage.setItem('vgr_cart',JSON.stringify(cart));
   const allPages=Array.from(pages.querySelectorAll('.game-page'));
   function showPage(id){
@@ -737,13 +741,13 @@ body:after{
     });
     const submit=document.createElement('button');submit.type='button';submit.className='btn';submit.textContent='✅ ثبت درخواست خرید';
     submit.onclick=()=>{
-      const summary=cart.map(x=>x.name+' × '+x.qty).join('\\n');
+      const summary=cart.map((x,i)=>(i+1)+') '+x.name+' × '+x.qty+' — '+Number(x.price*x.qty).toLocaleString('en-US')+' سکه').join('\n');
       const order={id:Date.now(),items:cart.map(x=>({...x})),total:cart.reduce((n,x)=>n+x.price*x.qty,0),status:'در انتظار بررسی',date:new Date().toISOString()};
       let orders=[];try{orders=JSON.parse(localStorage.getItem('vgr_orders')||'[]')}catch(e){}
       orders.push(order);localStorage.setItem('vgr_orders',JSON.stringify(orders));
       cart=[];saveCart();
       root.innerHTML='<div class="empty">✅ درخواستت ثبت شد! برای پیگیری به ادمین پیام بده.</div><button class="btn" id="cartAdminMsg">📨 پیام به ادمین</button><button class="btn close" id="cartDone">بازگشت به بازی</button>';
-      $('cartAdminMsg').onclick=()=>openTelegramMessage('سلام، درخواست محصولات VGR GAME را ثبت کردم:\\n'+summary+'\\nشماره درخواست: '+order.id);
+      $('cartAdminMsg').onclick=()=>openTelegramMessage('سلام وقت بخیر 🌹\n\nیک درخواست جدید از بخش VGR GAME ثبت کردم.\n\n🛍️ محصولات درخواستی:\n'+summary+'\n\n💰 مبلغ کل: '+Number(order.total).toLocaleString('en-US')+' سکه\n🔢 شماره پیگیری: '+order.id+'\n\nلطفاً پس از بررسی، راهنمایی کنید. ممنونم ❤️');
       $('cartDone').onclick=()=>showPage(null);
     };
     root.appendChild(submit);
