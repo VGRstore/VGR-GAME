@@ -102,7 +102,8 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
       <div style="margin-top:16px;line-height:2"><b>نسخه جدید</b>
       <p class="support-hint">• اضافه شدن پنل رایگان ربات</p>
       <p class="support-hint">• اضافه شدن بخش آخرین آپدیت‌ها</p>
-      <p class="support-hint">• حذف بخش‌های بازی و خرید CP</p></div>
+      <p class="support-hint">• حذف بخش‌های بازی و خرید CP</p>
+      <p class="support-hint">• انتقال خرید اکانت و مدیریت اکانت به ربات @VGRstorebot</p></div>
     </section>
   </div>
   <div id="mainScreen">
@@ -112,6 +113,7 @@ textarea{min-height:90px;resize:vertical;line-height:1.8}
       <div class="buttons">
         <button class="btn" id="open" type="button">📋 ثبت آگهی</button>
         <button class="btn cyan" id="buy" type="button">🛒 خرید اکانت</button>
+        <button class="btn" id="manageAccount" type="button">👤 مدیریت اکانت</button>
         <button class="btn" id="robotPanel" type="button">🤖 پنل رایگان ربات</button>
         <button class="btn cyan" id="support" type="button">🆘 پشتیبانی</button>
       </div>
@@ -191,6 +193,11 @@ var dlg=document.getElementById("dlg"), err=document.getElementById("err"), file
 var welcomeScreen=document.getElementById("welcomeScreen"), mainScreen=document.getElementById("mainScreen"), supportScreen=document.getElementById("supportScreen"), pingScreen=document.getElementById("pingScreen");
 var homeScreen=document.getElementById("homeScreen"), buyScreen=document.getElementById("buyScreen"), cpScreen=document.getElementById("cpScreen"), detailsScreen=document.getElementById("detailsScreen"), adsList=document.getElementById("adsList"), detailsContent=document.getElementById("detailsContent");
 
+function openTelegramBot() {
+  var url="https://t.me/VGRstorebot";
+  if(tg && tg.openTelegramLink) tg.openTelegramLink(url);
+  else window.open(url,"_blank","noopener");
+}
 function openTelegramMessage(text, username) {
   var target=String(username || ADMIN_USERNAME).replace(/^@/,"").trim();
   if(!target){alert("نام کاربری تلگرام در دسترس نیست.");return;}
@@ -242,7 +249,8 @@ document.getElementById("sendSupport").onclick=function(){
 };
 document.getElementById("open").onclick=function(){err.textContent="";dlg.showModal();};
 document.getElementById("close").onclick=function(){dlg.close();};
-document.getElementById("buy").onclick=function(){transitionTo("buyScreen",loadAds);};
+document.getElementById("buy").onclick=openTelegramBot;
+document.getElementById("manageAccount").onclick=openTelegramBot;
 
 document.getElementById("backHome").onclick=function(){transitionTo("homeScreen");};
 
@@ -807,4 +815,4 @@ body:after{
 
 </body>
 
-  </html>
+</html>
